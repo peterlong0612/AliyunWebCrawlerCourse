@@ -1,0 +1,25 @@
+Linux 安装python3.7.4<br /><br />
+                                                                        
+<p>我这里使用的分配的专用ECS，系统本身默认安装有python2.x，版本x根据不同版本有 所不同，可通过 python --V 或 python --version 查看系统自带的python版本，有一些系统命令时需要用到python2，不能卸载！</p>
+<p>1、安装依赖包                                                                       </p>
+<p>1）首先安装gcc编译器，gcc有些系统版本已经默认安装，通过  gcc --version  查看，没安装的先安装gcc，yum -y install gcc</p>
+<p>2）安装其它依赖包，（注：不要缺少，否则有可能安装python出错，python3.7.4以下的版本可不装 libffi-devel ）</p>
+<p>yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</p>
+<p>2、下载python3.7.4源码，根据需求下载                                 </p>
+<p>1）在<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2Fdownloads%2Fsource%2F" target="_blank" data-url="https://www.python.org/downloads/source/">https://www.python.org/downloads/source/</a>中选择自己需要的python源码包，我下载的是python3.7.4</p>
+<p>2）下载：wget <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2Fftp%2Fpython%2F3.7.4%2FPython-3.7.4.tgz" target="_blank" data-url="https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz">https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz</a></p>
+<p>3）解压Python-3.7.4.tgz</p>
+<p>tar -zxvf Python-3.7.4.tgz</p>
+<p>3、建立一个空文件夹，用于存放python3程序　　　　　　　　</p>
+<p>mkdir /usr/local/python3</p>
+<p>4、执行配置文件，编译，编译安装　　　　　　　　　　　　</p>
+<p>cd Python-3.7.4<br>./configure --prefix=/usr/local/python3<br>make &amp;&amp; make install<br>安装完成没有提示错误便安装成功了</p>
+<p>5、建立软连接　　　　　　　　　　　　　　　　　　　　　</p>
+<p>ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3<br>ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3</p>
+<p>6、测试一下python3是否可以用　　　　　　　　　　　　　　</p>
+<p>[root@ecs-rc3-large-4-linux-20190802155355 Python-3.7.4]# python3<br>Python 3.7.4 (default, Aug  3 2019, 09:21:23) <br>[GCC 4.8.5 20150623 (Red Hat 4.8.5-36)] on linux<br>Type "help", "copyright", "credits" or "license" for more information.</p>
+<blockquote><blockquote><blockquote><p>print ("hello huawei")<br>hello huawei<br>exit ()</p></blockquote></blockquote></blockquote>
+<p>[root@ecs-rc3-large-4-linux-20190802155355 Python-3.7.4]# pip3 --version<br>pip 19.0.3 from /usr/local/python3/lib/python3.7/site-packages/pip (python 3.7)<br>可以看到python3.7.4可以正常使用</p>
+
+                                                            </div>
+                                

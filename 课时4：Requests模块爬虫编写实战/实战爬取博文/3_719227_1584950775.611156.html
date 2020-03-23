@@ -1,0 +1,37 @@
+Python列表统计重复元素<br /><br />
+                                                                        
+<h2><span style="color:#000000;"><b>方法一</b></span></h2>
+<h3><b>使用list的内置方法<code>list.count()</code></b></h3>
+<pre><code class="python">l = [1, 1, 2, 3, 3]
+sl = set(l)
+for i in sl:
+    if l.count(i) &gt; 1:
+        print("元素{},重复{}次".format(i, l.count(i)))</code></pre>
+<hr>
+<h2><span style="color:#000000;"><b>方法二</b></span></h2>
+<h3><b>使用python内置方法<code>collections的Count()</code>模块</b></h3>
+<pre><code class="python">from collections import Counter
+l = [1, 1, 2, 3, 3]
+cl = Counter(l)
+for k, v in cl.items():
+    if v &gt; 1:
+        print("元素{}, 重复{}次".format(k, v))</code></pre>
+<hr>
+<h2><span style="color:#000000;"><b>方法三</b></span></h2>
+<h3><b>使用<code>for循环</code></b></h3>
+<pre><code class="python">l = [1, 1, 2, 3, 3]
+sl = set(l)
+d = {}
+for s in sl:
+    count = 0
+    for i in l:
+        if i == s:
+            count += 1
+            d[s] = count
+for k, v in d.items():
+    if v &gt; 1:
+        print("元素{}, 重复{}次".format(k, v))</code></pre>
+<p>参考链接：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.wxy.email%2F2019%2F09%2F23%2Flist-repeat%2F" target="_blank" data-url="https://www.wxy.email/2019/09/23/list-repeat/">Python列表统计重复元素</a></p>
+
+                                                            </div>
+                                

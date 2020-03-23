@@ -1,0 +1,159 @@
+为什么你现在必须迁移到 Python 3<br /><br />
+                                                                        
+<blockquote><p>云栖号资讯：【<a href="https://yqh.aliyun.com/?cate=%E8%B5%84%E8%AE%AF">点击查看更多行业资讯</a>】<br>在这里您可以找到不同行业的第一手的上云资讯，还在等什么，快来！</p></blockquote>
+<p></p>
+<p style="text-align:center;"><img src="https://yqfile.alicdn.com/42d53b203c8863e5170964b6e627c299cb2ddb5d.png" alt="image" title="image"></p>
+<p>从 Python 2 迁移到 Python 3，只剩不到 1 个月的时间。幸运的是，迁移工作没想象中那么困难。</p>
+<h3>Python 2 不再受支持</h3>
+<p>众所周知，对 Python 2 的支持将在 2020 年初停止。不管怎样，“板上钉钉”的是，最后一个主要的 2.7.x 版本将在 2020 年 4 月发布。之后，针对 Python 2 的所有开发都将停止，这意味着不再有安全更新。</p>
+<p>目前，许多包的维护者都已迁移到 Python 3。其中，有些仍然支持 Python 2，而其他的则已经放弃。2020 年 4 月后，大多数软件包将停止支持 Python 2。</p>
+<p>据悉，Python 3.0 发布于 2008 年 12 月 3 日。没错，我们曾有足够时间进行迁移。如果现在还没有行动，那就应该把它放在第一。你至少应该在 2020 年结束前迁移到 Python 3，否则就要面临各种风险，比如漏洞、无法运行的软件等。</p>
+<p>如何查看你正在运行的版本<br>如果不知道正使用的 Python 版本，你可以用下面的命令查看当前的 Python 版本：</p>
+<pre><code class="js">$ python --version
+Python 2.7.16
+</code></pre>
+<p>它适用于任何操作系统，包括 Windows。希望你的答案是 3.7.x，甚至是更高版本；即使是 2.7.x，也先不要担心。许多系统都安装了两个版本的 Python。通常来说，输入python时会运行 Python 2，输入python3时运行 Python 3。</p>
+<p>试一下：</p>
+<pre><code class="js">python3 --version
+Python 3.7.6
+</code></pre>
+<p>如果得到类似输出，那么恭喜，你已经安装了 Python 3。</p>
+<h3>如何升级 / 安装</h3>
+<p>我发现这有个很棒的网站，它明确地告诉你如何在 Windows、Linux、macOS 甚至 Chromebooks 上安装 Python 3。去那里看看，收获会不小。</p>
+<h3>如何迁移你的代码？</h3>
+<p>现在，你已经运行 Python 3，就该升级代码了。代码升级并不难，你可以遵循多种策略。现在大多数的库都已经兼容 Pyhton 3。</p>
+<p>所以你只需要：</p>
+<ul>
+<li>升级自己的代码</li>
+<li>如有必要，将依赖项升级到比较新的、兼容 Python 3 的版本</li>
+</ul>
+<h3>2to3</h3>
+<p>2to3是一个 Python 程序，可以读取 Python 2 源码并进行一系列修复，将其转换为有效的 Python 3 代码。其标准库包含一组丰富的修复程序，几乎可以处理所有代码。</p>
+<p>Python 3 中的一个明显变化是print现在变成了名为print()的函数。例如，以下 Python 2 代码：</p>
+<pre><code class="js">def greet(name):
+    print "Hello, {0}!".format(name)
+print "What's your name?"
+name = raw_input()
+greet(name)
+</code></pre>
+<p>可以通过调用进行转换</p>
+<pre><code class="js">$ 2to3 greet.py
+</code></pre>
+<p>默认情况下，这只会将差异部分显示在屏幕上。不过在检查后，你可以用-w选项，它就会真的更改文件了：</p>
+<pre><code class="js">$ 2to3 -w greet.py
+</code></pre>
+<p>原始文件已被更改，而旧文件将被保存为greet.py.bak。结果如下：</p>
+<pre><code class="js">def greet(name):
+     print("Hello, {0}!".format(name))
+ print("What's your name?")
+ name = input()
+ greet(name)
+</code></pre>
+<p>2to3还有一些更有趣的选项：</p>
+<ul>
+<li>-l —— 列出所有的修复程序</li>
+<li>-x —— 排除选择的修复程序</li>
+<li>-f —— 只运行指定的修复程序<br>在开始代码转换之前，请继续并阅读完整文档。</li>
+</ul>
+<h3>six</h3>
+<p>six是一个 Python 2 和 3 的兼容库，它可以帮助代码库同时支持 Python 2 和 3。我建议使用2to3完全迁移到 Python 3，但如果你不能这么做（无论出于什么原因），至少它可以做到让你的代码库在两个版本上都能用。</p>
+<p>six 提供的函数能消除 Python 2 和 3 之间的语法差异。一个简单的例子是six.print_()，在 Python 3 中打印是通过print()函数完成的，在 Python 2 中print没有括号。因此，通过使用six.print_()，你可以用一条语句同时支持两个语言版本。</p>
+<p>实际上：</p>
+<ul>
+<li>six的名字出自于 2 乘 3 等于 6</li>
+<li>还有一个类似的库是 future</li>
+</ul>
+<p>升级你的包</p>
+<p>你可能需要升级依赖的包。对每个正在使用的包，检查它是否已经支持 Python 3。</p>
+<p>如果没有，就去找支持的版本。你可能需要改动某些代码，因为 API 往往会随着时间改变。</p>
+<h3>检查最低要求的 Python 版本</h3>
+<p>迁移代码后，可以在代码中检查 Python 版本。这样可以确保你和用户没有在不兼容的版本下运行脚本，否则会导致难以理解的错误。像这样做一个简单的检查：</p>
+<pre><code class="js">if not sys.version_info &gt; (2, 7):
+    # 批评下还在用十年前版本 python 的用户
+elif not sys.version_info &gt;= (3, 5):
+    # 告诉用户他 (她) 需要升级，因为你用到了 3.5 版本的特性
+</code></pre>
+<h3>Python 3 的优点</h3>
+<p>为进一步提起你的胃口，以下是 Python 3 具备的一些优点。</p>
+<p><strong>1.Print 不再是语句而是内置函数</strong></p>
+<p>好处在于：</p>
+<ul>
+<li>确实没有理由让print作为一个语句存在，如果print是一个函数会更加统一。</li>
+<li>因为print是一个函数，因此可以将其作为参数传递给需要它的函数。以一个函数为例，它需要另一个函数进一步处理数据作为参数。为简单- 地对它实现模拟 / 调试，你现在能直接传递一个print()函数。</li>
+<li>可以像这样用print：[print(x) for x in range(10)]，因为现在它是一个函数。</li>
+<li>可以通过指定builtins.print来覆写print函数，而对于语句就不能这么做了。</li>
+</ul>
+<p><strong>2.Unicode</strong></p>
+<p>在 Python 3 中，每个字符串默认都是 Unicode 字符串。在 Python 2 中，字符串默认为 ASCII 字符串，这限制了它可以处理的字符范围。如果需要 Unicode 字符串，则必须这样创建：</p>
+<pre><code class="js"># Python 3 中不再需要
+unicode_sting = u'Ümlaut? Nō prōblem!'
+</code></pre>
+<p>这在许多国家是必需的。</p>
+<p><strong>3. 数据类</strong></p>
+<p>从 3.7 版本（相当新版本）开始，Python 提供数据类（data classes）。与常规类或其他替代方法相比，它有一些优点，例如返回多个值或字典：</p>
+<ul>
+<li>数据类（data classes）需要的代码量最少</li>
+<li>实现了__eq__，所以可以对比数据类（data classes）</li>
+<li>实现了__repr__，可以轻松打印出一个数据类</li>
+<li>数据类需要类型提示，能减少错误的发生</li>
+</ul>
+<p>以下是实践中数据类（data classes）的示例：</p>
+<pre><code class="js">from dataclasses import dataclass
+ 
+@dataclass
+class Card:
+    rank: str
+    suit: str
+    
+card = Card("Q", "hearts")
+ 
+print(card == card)
+# True
+ 
+print(card.rank)
+# 'Q'
+ 
+print(card)
+Card(rank='Q', suit='hearts')
+</code></pre>
+<p><strong>4. 合并字典</strong></p>
+<p>从 Python 3.5 起，合并字典变得更容易：</p>
+<pre><code class="js">dict1 = { 'a': 1, 'b': 2 }
+dict2 = { 'b': 3, 'c': 4 }
+merged = { **dict1, **dict2 }
+print (merged)
+# {'a': 1, 'b': 3, 'c': 4}
+</code></pre>
+<p>如果存在重叠的键，则第一个字典中的键将被覆盖。</p>
+<p><strong>5. 除法变得更加可预见</strong></p>
+<p>在 Python 2 中，除法运算符（/）默认为整数除法，除非操作数之一是浮点数。 因此有以下行为：</p>
+<pre><code class="js"># Python 2
+5 / 2 = 2
+5 / 2.0 = 2.5
+</code></pre>
+<p>在 Python 3 中，除法运算符默认为浮点除法，//运算符变为整数除法。 这样我们会得到：</p>
+<pre><code class="js">Python 3
+5 / 2 = 2.5
+5 // 2 = 2
+</code></pre>
+<p>关于这项更改背后的动机，你可以读一读 PEP-0328 。</p>
+<p><strong>6. 有意义的比较</strong></p>
+<p>在 Python 2 中，可以对所有内容进行比较。 以下示例将全部返回 True：</p>
+<pre><code class="js">print "a string" &gt; 2
+print None &lt; 5
+</code></pre>
+<p>它没有意义，并且可能将错误隐藏。在 Python 3 中，这些比较将引发TypeError异常。</p>
+<p><strong>7. 不再有 range vs. xrange</strong></p>
+<p>Python 2 有两个range函数：range和xrange，后者更快，因为它的实现基于迭代器。</p>
+<p>在 Python 3 中，range已变为xrange，并且删除了xrange名称。在这个地方，Python 减少了学习者的困惑。</p>
+<h3>小结</h3>
+<p>对于 Python 3 vs. Python 2 的话题，我可以一直谈下去，但现在你应该知道该做什么。</p>
+<p>2020 年 4 月后，放弃对 Python 2 支持的简单事实应该足以让你采取行动，转换那些代码库。</p>
+<blockquote>
+<p>【云栖号在线课堂】每天都有产品技术专家分享！<br>课程地址：<a href="https://yqh.aliyun.com/zhibo">https://yqh.aliyun.com/zhibo</a></p>
+<p>立即加入社群，与专家面对面，及时了解课程最新动态！<br>【云栖号在线课堂 社群】<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fc.tb.cn%2FF3.Z8gvnK" data-url="https://c.tb.cn/F3.Z8gvnK">https://c.tb.cn/F3.Z8gvnK</a></p>
+</blockquote>
+<p>原文发布时间：2020-03-17<br>本文作者：Erik-Jan van Baaren<br>本文来自：“<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.infoq.cn%2Farticle%2FldiifHVvcsJGNBTRS9bF" data-url="https://www.infoq.cn/article/ldiifHVvcsJGNBTRS9bF">infoq</a>”，了解相关信息可以关注“<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.infoq.cn%2Farticle%2FldiifHVvcsJGNBTRS9bF" data-url="https://www.infoq.cn/article/ldiifHVvcsJGNBTRS9bF">infoq</a>”</p>
+
+                                                            </div>
+                                

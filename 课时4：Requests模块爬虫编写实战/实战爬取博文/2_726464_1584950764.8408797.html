@@ -1,0 +1,85 @@
+2019最新Python3：基础语法<br /><br />
+                                                                        
+<p><img src="https://yqfile.alicdn.com/2adb3c3be360db91b0c514d3f70f591eefec6f7a.jpeg" alt="_" title="_"><br>2019最新Python3：基础语法</p>
+<ol><li>什么是Python?</li></ol>
+<p>Python 是一种解释型、面向对象、动态数据类型的高级程序设计语言。</p>
+<p>Python 由 Guido van Rossum 于 1989 年底发明，第一个公开发行版发行于 1991 年。</p>
+<ol><li>Python环境搭建</li></ol>
+<p>Python官网：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2F" target="_blank" data-url="https://www.python.org/">https://www.python.org/</a></p>
+<p>下载地址：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2Fdownloads%2Frelease" target="_blank" data-url="https://www.python.org/downloads/release">https://www.python.org/downloads/release</a></p>
+<p>自行安装</p>
+<ol><li>Python程序的文件头格式</li></ol>
+<h1>!/usr/bin/python3</h1>
+<h1>-<em>- coding: utf-8 -</em>-</h1>
+<h1>author : liuhefei</h1>
+<h1>Time : 2019/11/1</h1>
+<h1>desc: python程序的描述信息</h1>
+<ol><li>Python编码</li></ol>
+<p>默认情况下，Python 3 源码文件以 UTF-8 编码，所有字符串都是 unicode 字符串。 当然你也可以为源码文件指定不同的编码：</p>
+<h1>-<em>- coding: gbk -</em>-</h1>
+<ol><li>Python标识符</li></ol>
+<p>Python标识符由字母，数字，下划线组成</p>
+<h1>第一个字符必须是字母表中字母或下划线 _ ，而不能是数字</h1>
+<h1>标识符的其他的部分由字母、数字和下划线组成。</h1>
+<h1>标识符对大小写敏感。</h1>
+<h1>在 Python 3 中，可以用中文作为变量名，非 ASCII 标识符也是允许的了。</h1>
+<ol><li>Python保留字(关键字)：Python内部保留使用，在实际开发中，不能将它们用作任何标识符名称。</li></ol>
+<p>Python 的标准库提供了一个 keyword 模块，可以输出当前版本的所有关键字：</p>
+<ol><li>Python注释</li></ol>
+<p>单行注释： # 注释</p>
+<p>多行注释： '''注释''' 和 """注释"""</p>
+<ol><li>Python主函数的写法：</li></ol>
+<p>if <strong>name</strong> == "__main__":</p>
+<ol><li>Python变量</li></ol>
+<p>Python变量的定义遵循Python标识符的命名规则。变量用来存储值</p>
+<p>Python 中的变量不需要声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。</p>
+<p>在 Python 中，变量就是变量，它没有类型，我们所说的"类型"是变量所指的内存中对象的类型。</p>
+<p>变量的定义： a = 1</p>
+<p>其中：等号"="用来给变量赋值；等号左边的a是变量名称；等号右边的1是变量a存储的值</p>
+<p>变量在使用之前，必须先定义（即赋予变量一个值），否则会出现错误。</p>
+<ol><li>Python变量赋值</li></ol>
+<p>(1)单个变量赋值：a = 1</p>
+<p>(2)多个变量赋值：Python允许你同时为多个变量赋值，如下：</p>
+<p>a, b, c, d = 1, 2, 3, 4</p>
+<p>或者</p>
+<p>a = b = c = d = 1</p>
+<p>Python中，一个变量可以通过赋值指向不同类型的对象。</p>
+<ol><li>Python标准数据类型</li></ol>
+<p>(1)Number(数字)</p>
+<p>(2)String(字符串)</p>
+<p>(3)List(列表或数组)</p>
+<p>(4)Tuple(元组)</p>
+<p>(5)Set(集合)</p>
+<p>(6)Dictionary(字典)</p>
+<p>按照是否是可变数据类型分：</p>
+<p>(1)不可变数据： Number(数字), String(字符串), Tuple(元组)</p>
+<p>(2)可变数据： List(列表), Set(集合), Dictionary(字典)</p>
+<ol><li>数字(Number)类型</li></ol>
+<p>python中数字有四种类型：整数、布尔型、浮点数和复数。</p>
+<p>int (整数), 如 1, 只有一种整数类型 int，表示为长整型，没有 python2 中的 Long。</p>
+<p>bool (布尔), 如 True 和 False (Python区分大小写)</p>
+<p>float (浮点数), 如 1.23、3E-2 (没有double类型)</p>
+<p>complex (复数), 如 1 + 2j、 1.1 + 2.2j (复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示， 复数的实部a和虚部b都是浮点型)</p>
+<ol><li>字符串(String)类型</li></ol>
+<p>Python中的字符串用单引号 ' 或双引号 " 括起来，同时使用反斜杠  转义特殊字符。单引号和双引号使用完全相同。</p>
+<p>使用三引号('''或""")可以指定一个多行字符串。</p>
+<p>转义符 '', 用来转义特殊符号，比如：n</p>
+<p>反斜杠可以用来转义，使用r可以让反斜杠不发生转义。。 如 r"Hello n World" 则n会显示，并不是换行。</p>
+<p>按字面意义级联字符串，如"this " "is " "string"会被自动转换为this is string。</p>
+<p>字符串的拼接操作，可以使用加号"+"来实现，将多个字符串连接在一起。</p>
+<p>字符串的乘法操作，可以使用乘号"<em>"来实现，将一个字符串复制多份，比如："Hello" </em> 3 =HelloHelloHello</p>
+<p>Python 中的字符串有两种索引方式: 从左往右以 0 开始，从右往左以 -1 开始。</p>
+<p>Python中的字符串不能改变。</p>
+<p>Python 没有单独的字符类型，一个字符就是长度为 1 的字符串。</p>
+<ol><li>Python行与缩进</li></ol>
+<p>python最具特色的就是使用缩进来表示代码块，不需要使用大括号 {} 。</p>
+<p>缩进的空格数是可变的，但是同一个代码块的语句必须包含相同的缩进空格数。</p>
+<p>空行：</p>
+<p>函数之间或类的方法之间用空行分隔，表示一段新的代码的开始。类和函数入口之间也用一行空行分隔，以突出函数入口的开始。</p>
+<p>空行与代码缩进不同，空行并不是Python语法的一部分。书写时不插入空行，Python解释器运行也不会出错。但是空行的作用在于分隔两段不同功能或含义的代码，便于日后代码的维护或重构。</p>
+<p>记住：空行也是程序代码的一部分。</p>
+<p>实例代码1：</p>
+<p>实例代码2：</p>
+
+                                                            </div>
+                                

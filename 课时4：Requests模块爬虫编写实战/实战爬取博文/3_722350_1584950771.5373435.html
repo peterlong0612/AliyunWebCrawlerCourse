@@ -1,0 +1,112 @@
+我得扼住Python的喉咙！等到它对我下手就晚了<br /><br />
+                                                                        
+<p>其实这些小技巧真的很有用，关键时候你真用得上！</p>
+<p><img src="https://yqfile.alicdn.com/6dd5b6df224f5f047d67d20cfa431b512523d08b.png" alt="screenshot" title="screenshot"></p>
+<p><strong>布尔类型</strong></p>
+<p>Python支持布尔类型的数据，布尔类型只有True和False两种值，但是布尔类型有以下几种运算。</p>
+<p>1．与运算：只有两个布尔值都为True时，计算结果才为True。</p>
+<p>例子：</p>
+<p>True and True # ==&gt; True<br>True and False # ==&gt; False<br>False and True # ==&gt; False<br>False and False # ==&gt; False<br>2．或运算：只要有一个布尔值为True，计算结果就是True。</p>
+<p>例子：</p>
+<p>True or True # ==&gt; True<br>True or False # ==&gt; True<br>False or True # ==&gt; True<br>False or False # ==&gt; False<br>3．非运算：把True变为False，或者把False变为True。</p>
+<p>例子：</p>
+<p>not True # ==&gt; False<br>not False # ==&gt; True<br>布尔运算在计算机中用来做条件判断，根据运算结果为True或者False，计算机可以自动执行不同的后续代码。</p>
+<p>在Python中，布尔类型还可以与其他数据类型做and、or和not运算。</p>
+<p>例子：</p>
+<h1>布尔类型</h1>
+<p>a = True<br>print(a and 'a=T' or 'a=F')<br>运行结果如下所示。</p>
+<p>a=T<br>计算结果不是布尔类型，而是字符串a=T，这是为什么呢？因为Python把0、空字符串和None看成False，其他数值和非空字符串都看成True，所以True and 'a=T'计算结果是'a=T'。继续计算'a=T' or 'a=F'，所以计算结果还是'a=T'。</p>
+<p>要解释上述结果，又涉及and和or运算的一条重要法则：短路运算。短路运算符的意思是，运算符左右的表达式只有在需要求值的时候才进行求值。比如x or y，Python从左到右进行求值，先对表达式x进行真值测试，如果表达式x是真值，则根据or运算符的特性，不管y表达式的bool结果是什么，运算符的结果都是表达式x，表达式y不会进行求值。</p>
+<p>在计算a and b时，如果a是False，根据与运算法则，则计算结果必定为False，因此返回a；如果a是True，则整个计算结果必定取决于b，因此返回b。</p>
+<p>在计算a or b时，如果a是True，根据或运算法则，则计算结果必定为True，因此返回a；如果a是False，则计算结果必定取决于b，因此返回b。</p>
+<p>所以Python解释器在做布尔运算时，只要能提前确定计算结果，就不会往后算了，直接返回结果。</p>
+<p><strong>字符串类型</strong></p>
+<p><strong>什么是字符串</strong></p>
+<p>字符串就是一系列字符。在Python中，单引号、双引号或者三引号里面的内容就是字符串。如果字符串中包括单引号或者双引号，那么可以使用“”对字符串中的字符进行转义。</p>
+<p>例子：</p>
+<h1>单引号里面的文本就是字符串</h1>
+<p>‘I am a boy’</p>
+<h1>双引号其实和单引号一样，一般推荐使用单引号</h1>
+<p>"欢迎你加入Python实战圈"</p>
+<h1>三引号表示的字符串，一般是很长的文字</h1>
+<h1>三引号一般用来写文本注释</h1>
+<p>'''<br>我们实战圈的第一个项目就是“如何7天入门Python”<br>每一天都会安排学习内容，只需要40分钟就可以搞定<br>学完以后记得写作业并提交到“知识星球”<br>刚开始，学习节奏放慢一些<br>计划三天更新一次内容<br>希望你能参与进来<br>'''</p>
+<h1>转意字符串(n)</h1>
+<p>command = 'Let's go!'<br>print('n使用转义字符输出 ：',command)<br>运行结果如下所示。</p>
+<p>使用转义字符输出 ：Let's go!</p>
+<p><strong>字符串的基本用法</strong></p>
+<p><strong>1．添加空白</strong></p>
+<p>在编程中，一定的空白输出是为了方便阅读。Python常用的添加空白的方法有制表符（t）、空格或者换行符（n）。制表符表示把文字空两格输出。</p>
+<p>例子：</p>
+<h1>添加空白</h1>
+<h1>制表符可以组合使用</h1>
+<p>print("欢迎来到Python实战圈,n")<br>print('t你想要学习 Python 的哪方面内容，请留言。')<br>运行结果如下所示。</p>
+<p>欢迎来到Python实战圈,<br>你想要学习 Python 的哪方面内容，请留言。</p>
+<p><strong>2．拼接字符串</strong></p>
+<p>拼接字符串就是把两个或两个以上的字符串合并在一起。该操作在项目中经常用到，比如爬虫时，网页的正则表达式（以后会介绍）太长，可以用拼接的方法连接起来；也可以把两个变量的字符串拼接为一个等。Python使用加号（+）来拼接字符串。</p>
+<p>例子：</p>
+<h1>拼接字符串</h1>
+<p>log_1_str = 'The error is a bug.'<br>log_2_str = ' We should fix it.'<br>log_str = log_1_str + log_2_str<br>print('n拼接后的字符串就是：',log_str)<br>运行结果如下所示。</p>
+<p>拼接后的字符串就是：The error is a bug. We should fix it.<br>字符串的常见运算</p>
+<p><strong>1．修改字符串的大小写</strong></p>
+<p>在Python中，你会经常听到的两个名词是函数和方法。函数就是能独自完成特定任务的独立代码块，可以被调用；方法是面向对象编程语言中使用到的名词。Python是面向对象的编程语言，面向对象就是一切都是对象，比如你、我、他，统称为人（people），人就是一个对象。人可以奔跑（run），奔跑就是一个方法，合起来就是people.run()。</p>
+<p>例子：</p>
+<h1>字符串大小写转换</h1>
+<p>welcome = 'Hello, welcome to Python practical circle'</p>
+<h1>title()，每个单词的首字母大写</h1>
+<p>print('n每个单词的首字母大写：', welcome.title())</p>
+<h1>capitalize()，段落的首字母大写</h1>
+<p>print('n段落的首字母大写：',welcome.capitalize())</p>
+<h1>lower()，所有字母小写</h1>
+<p>print('n所有字母小写：',welcome.lower())</p>
+<h1>upper()，所有字母大写</h1>
+<p>print('n所有字母大写：',welcome.upper())</p>
+<h1>大写转小写，小写转大写</h1>
+<p>print('n大写转小写，小写转大写：',welcome.swapcase())</p>
+<h1>String.isalnum()，判断字符串中是否全部为数字或者英文，符合就返回True，不符合就返回False，如果里面包含符号或者空格之类的特殊字符，那么也会返回False</h1>
+<p>print('n判断字符串是否全部为数字或者英文：',welcome.isalnum())</p>
+<h1>String.isdigit()，判断字符串中是否全部为整数</h1>
+<p>print('n判断字符串中是否全部为整数：', welcome.isdigit())</p>
+<p>运行结果如下所示。</p>
+<p>每个单词的首字母大写：Hello, Welcome To Python Practical Circle<br>段落的首字母大写：Hello, welcome to python practical circle<br>所有字母小写：hello, welcome to python practical circle<br>所有字母大写：HELLO, WELCOME TO PYTHON PRACTICAL CIRCLE<br>大写转小写，小写转大写：hELLO, WELCOME TO pYTHON PRACTICAL CIRCLE<br>判断字符串是否全部为数字或者英文：False<br>判断字符串中是否全部为整数：False</p>
+<p><strong>2．删除字符串两端的空白</strong></p>
+<p>删除字符串两端的空白，在数据清理时经常被用到。常见的操作是去除两端或者一端的空格。</p>
+<p>例子：</p>
+<p># 删除两端的空白<br>love_Python = ' Hello, Python Practical Circle '<br> # 删除字符串两端的空白<br>print('删除字符串两端的空白',love_Python.strip())<br> # 删除字符串右侧的空白<br>print('删除字符串右侧的空白',love_Python.rstrip())<br> # 删除字符串左侧的空白<br> print('删除字符串左侧的空白',love_Python.lstrip())<br>运行结果如下所示。</p>
+<p>删除字符串两端的空白 Hello, Python Practical Circle<br> 删除字符串右侧的空白 Hello, Python Practical Circle<br> 删除字符串左侧的空白 Hello, Python Practical Circle<br><strong>3．其他注意事项</strong></p>
+<p>Python中字符串的操作非常多，以上只列出了部分常用操作。有一点需要注意的是，Python中的字符串不允许修改值，只允许覆盖值。也就是说，字符串只能重新赋值。</p>
+<p><strong>字符串的切片</strong></p>
+<p>切片（slice）操作是Python中经常用到的操作。字符串的切片就是从一个字符串中获取子字符串（字符串的一部分）。我们使用一对方括号、起始偏移量（start）、终止偏移量（end），以及可选的步长（step）来定义一个切片。</p>
+<p>语法：[start:end:step]<br>• [:] 提取从开头（默认位置0）到结尾（默认位置-1）的整个字符串<br>• [start:] 从start提取到结尾<br>• [:end] 从开头提取到end-1<br>• [start:end] 从start 提取到end-1<br>• [start:end:step] 从start提取到end-1，每step个字符提取一个<br>• 左侧第一个字符的位置/偏移量为0，右侧最后一个字符的位置/偏移量为-1</p>
+<p>例子：</p>
+<pre><code class="js"># 字符串切片
+word = 'Python'
+print(word[1:2])
+print(word[-2:])
+print(word[::2])
+print(word[::-1])
+</code></pre>
+<p>运行结果如下所示。</p>
+<pre><code class="js">y
+on
+Pto
+nohtyP
+</code></pre>
+<p><strong>各种类型之间的转换</strong></p>
+<p>在Python中，各个数据类型是可以互相转化的，并且可以使用type()函数查看某一个变量的类型。</p>
+<p>语法：type(变量名) 用来查看变量的数据类型<br>type()函数在实际项目中经常用到，因为只有知道了变量是什么类型才可以进行相应的运算，比如字典类型和列表类型有不同的运算。类型转换在项目实战中也经常用到，例如一个超市的月销售额是一个字符类型，转换为数字类型才可以进行统计，如计算平均数等，具体的转换语法如下所示。</p>
+<p>语法：</p>
+<p>float(a) 将变量a转换为浮点数<br>int(b) 将变量b转换为整数<br>str(c)将变量c转换为字符串<br>其中a、b、c为任意变量类型<br>例子：</p>
+<p>'''<br> 各种数据类型之间的转换<br>'''<br>print('n各个数值类型的转换')<br>number = 100</p>
+<h1>number的数据类型是整型，用int表示</h1>
+<p>print('number的数据类型是：')<br>print(type(number))</p>
+<h1>将整数转换为浮点数</h1>
+<p>float_number = float(number)<br>print('nfloat_number的数据类型是:')<br>print(type(float_number))</p>
+<h1>将整型转换为字符串</h1>
+<p>print('nnumber转换为字符串类型')<br>str_number = str(number)<br>print('str_number的数据类型是:')<br>print(type(str_number))</p>
+<h1>将字符串转换为整型int()或者浮点数float()</h1>
+<p>print('nstr_number转换为数字类型')<br>int_str_number = int(str_number)<br>float_str_number = float(str_number)<br>print('int_str_number的数据类型是：')<br>print(type(int_str_number))<br>print('float_str_number的数据类型是:')<br>print(type(float_str_number))<br>运行结果如下所示。</p>
+<p>各个数值类型的转换<br>number的数据类型是：<br><br>float_number的数据类型是：<br><br>number转换为字符串类型<br>str_number的数据类型是:<br><br>str_number转换为数字类型<br>int_str_number的数据类型是：<br><br>float_str_number的数据类型是:<br><br>有其他的一些实用技巧伙伴们也可以留言分享给大家！欢迎补充！</p>
+
+                                                            </div>
+                                

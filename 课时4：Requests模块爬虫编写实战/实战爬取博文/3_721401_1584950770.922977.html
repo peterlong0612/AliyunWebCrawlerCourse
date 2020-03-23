@@ -1,0 +1,221 @@
+Python入门你要懂哪些？<br /><br />
+                                                                        
+<h4><strong>前言</strong></h4>
+<p><strong>什么是计算机语言</strong></p>
+<p>计算机就是一台用来计算的机器，人让计算机干什么计算机就得干什么！</p>
+<p>需要通过计算机的语言来控制计算机（也就是编程语言）！</p>
+<p>计算机语言其实和人类的语言没有本质的区别，不同点就是交流的主体不同！<br>计算机语言发展经历了三个阶段：</p>
+<p>1). 机器语言</p>
+<ul>
+<li>机器语言通过二进制编码来编写程序</li>
+<li>执行效率好，编写起来太麻烦</li>
+</ul>
+<p>2). 符号语言（汇编）</p>
+<ul>
+<li>使用符号来代替机器码</li>
+<li>编写程序时，不需要使用二进制，  而是直接编写符号</li>
+<li>编写完成后，需要将符号转换为机器码，然后再由计算机执行符号转换为机器码的过程称为汇编</li>
+<li>将机器码转换为符号的过程，称为反汇编</li>
+<li>汇编语言一般只适用于某些硬件，兼容性比较差</li>
+</ul>
+<p>3). 高级语言</p>
+<ul>
+<li>高级语言的语法基本和现在英语语法类似，并且和硬件的关系没有那么紧密了。也就是说我们通过高级语言开发程序可以在不同的硬件系统中执行</li>
+<li>并且高级语言学习起来也更加的容易，现在我们知道的语言基本都是高级语言 如：C、  C++、C#、Java、JavaScript、Python 等..</li>
+</ul>
+<h4><strong>编译型语言和解释型语言</strong></h4>
+<p>计算机只能识别二进制编码（机器码），所以任何的语言在交由计算机执行时必须要先转换为机器码，也就是像 print('hello') 必须要转换为类似 1010101 这样的机器码。</p>
+<p>根据转换时机的不同，语言分成了两大类：</p>
+<p>1). 编译型语言</p>
+<ul>
+<li>如：C语言</li>
+<li>
+<p>编译型语言，会在代码执行前将代码编译为机器码，然后将机器码交由计算机执行</p>
+<ul><li>执行过程：a(源码) --编译--&gt; b(编译后的机器码)</li></ul>
+</li>
+<li>
+<p>特点：</p>
+<ul>
+<li>执行速度特别快</li>
+<li>跨平台性比较差</li>
+</ul>
+</li>
+</ul>
+<p>2). 解释型语言</p>
+<ul>
+<li>如：Python JS Java</li>
+<li>
+<p>解释型语言，不会在执行前对代码进行编译，而是在执行的同时一边执行一边编译</p>
+<ul><li>执行过程：a（源码）--解释器--&gt; 解释执行</li></ul>
+</li>
+<li>
+<p>特点：</p>
+<ul>
+<li>执行速度比较慢</li>
+<li>跨平台性比较好</li>
+</ul>
+</li>
+</ul>
+<p>下面我们切入正题，谈谈Python。</p>
+<h4><strong>Python的介绍</strong></h4>
+<p><strong>Python是解释型语言。</strong></p>
+<p>Python（英国发音：/ˈpaɪθən/ 美国发音：/ˈpaɪθɑːn/），是一种广泛使用的高级编程语言，属于通用型编程语言，由吉多·范罗苏姆创造，第一版发布于1991年。可以视之为一种改良（加入一些其他编程语言的优点，如面向对象）的LISP。作为一种解释型语言，Python的设计哲学强调代码的可读性和简洁的语法（尤其是使用空格缩进划分代码块，而非使用大括号或者关键词）。相比于C++或Java，Python让开发者能够用更少的代码表达想法。不管是小型还是大型程序，该语言都试图让程序的结构清晰明了。</p>
+<p><strong>Python的用途：</strong></p>
+<ul>
+<li>WEB应用</li>
+<li>Facebook 豆瓣</li>
+<li>爬虫程序</li>
+<li>科学计算</li>
+<li>自动化运维</li>
+<li>大数据（数据清洗)</li>
+<li>云计算</li>
+<li>桌面软件/游戏</li>
+<li>人工智能</li>
+</ul>
+<p><strong>Python开发环境搭建</strong></p>
+<p>开发环境搭建就是安装Python的解释器</p>
+<p>Python的解释器分类：</p>
+<ul>
+<li>CPython（官方）<br>用c语言编写的Python解释器</li>
+<li>PyPy<br>用Python语言编写的Python解释器</li>
+<li>IronPython<br>用.net编写的Python解释器</li>
+<li>JPython<br>用Java编写的Python解释器</li>
+</ul>
+<p><strong>步骤：</strong></p>
+<p>1.下载安装包 python-3.6.exe<br><img src="https://img-blog.csdnimg.cn/20191019194046154.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzM4NjgyODYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="在这里插入图片描述"><br>2.安装（傻瓜式安装, 默认选项..）</p>
+<p>安装完成可以看到以下几个程序：<br><img src="https://img-blog.csdnimg.cn/20191019194145913.png" alt="在这里插入图片描述" title="在这里插入图片描述"></p>
+<p>3.打开命令行窗口，输入python 出现如下内容<br><img src="https://img-blog.csdnimg.cn/20191019194218923.png" alt="在这里插入图片描述" title="在这里插入图片描述"><br>Python的交互界面</p>
+<p>当我们通过Windows命令行来输入Python，所进入到的界面就是Python的交互界面</p>
+<p>结构：</p>
+<p>版本和版权声明：</p>
+<pre><code class="python">Python 3.6.3 (tags/v3.6.3:2c5fed8, Oct  3 2017, 17:26:49) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.</code></pre>
+<p>命令提示符：</p>
+<pre><code class="python">&gt;&gt;&gt;</code></pre>
+<p>在命令提示符后可以直接输入Python的指令！输入完的指令将会被Python的解释器立即执行！</p>
+<p>安装Python的同时，会自动安装一个Python的开发工具IDLE，通过IDLE也可以进入到交互模式。但是不同的是，在IDLE中可以通过TAB键来查看语句的提示。</p>
+<p>IDLE实际上就是一个交互界面，但是他可以有一些简单的提示，并且可以将代码保存。</p>
+<p>注意：交互模式只能你输入一行代码，它就是执行一行，所以他并不适用于我们日常的开发！</p>
+<p>仅可以用来做一些日常的简单的测试！<br><img src="https://img-blog.csdnimg.cn/20191019194514407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzM4NjgyODYw,size_16,color_FFFFFF,t_70" alt="" title=""></p>
+<p>我们一般会将Python代码编写到一个py文件中，然后通过python指令来执行<br>文件中的代码。</p>
+<h4>Python和Sublime的整合</h4>
+<p>1.在Sublime中执行Python代码，按 ctrl + b 可以自动在Sublime内置的控制台中执行</p>
+<p>这种执行方式，在某些版本的Sublime中对中文支持不好，并且不能使用input()函数。</p>
+<p>2.使用SublimeREPL来运行python代码</p>
+<p>如下图：选择SublimeREPL-&gt; Python来执行Python代码<br><img src="https://img-blog.csdnimg.cn/20191019194555528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzM4NjgyODYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191019194631368.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzM4NjgyODYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="在这里插入图片描述"><br>但是这样很麻烦。为方便我们可以设置快捷键，按f5则自动执行当前的Python代码。</p>
+<p>如下设置快捷键来执行python代码呢？</p>
+<p>找到Preferences--&gt;Key Bindings  ，然后复制下面的内容到右边的中括号内。然后保存。</p>
+<p>这样我们就可以按F5快捷键来自动执行当前的Python代码了。</p>
+<pre><code class="python">{ "keys": ["f5"], "caption": "SublimeREPL:Python","command": "run_existing_window_command", "args":{"id": "repl_python_run","file": "config/Python/Main.sublime-menu"}},</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20191019194700793.png" alt="在这里插入图片描述" title="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191019194709288.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NpbmF0XzM4NjgyODYw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="在这里插入图片描述"></p>
+<h4>Python的几个基本概念</h4>
+<p><strong>1.表达式</strong></p>
+<p>表达式就是一个类似于数学公式的东西</p>
+<p>比如：10 + 5   8 - 4</p>
+<p>表达式一般仅仅用了计算一些结果，不会对程序产生实质性的影响</p>
+<p>如果在交互模式中输入一个表达式，解释器会自动将表达式的结果输出</p>
+<p><strong>2.语句</strong></p>
+<p>在程序中语句一般需要完成某种功能，比如打印信息、获取信息、为变量赋值<br>比如：</p>
+<pre><code class="python">
+#Python学习交流QQ群：857662006 
+
+print()
+input()
+a = 10</code></pre>
+<p>语句的执行一般会对程序产生一定的影响</p>
+<p>在交互模式中不一定会输出语句的执行结果</p>
+<p><strong>3.程序（program）</strong></p>
+<p>程序就是由一条一条的语句和一条一条的表达式构成的。</p>
+<p><strong>4.函数（function）</strong></p>
+<p>函数就是一种语句，函数专门用来完成特定的功能<br>函数长的形如：xxx()</p>
+<p>函数的分类：</p>
+<p>1). 内置函数</p>
+<pre><code> 由Python解释器提供的函数，可以在Python中直接使用</code></pre>
+<p>2). 自定义函数</p>
+<pre><code> 由程序员自主的创建的函数
+ 当我们需要完成某个功能时，就可以去调用内置函数，或者自定义函数
+</code></pre>
+<p>函数的两个要素：</p>
+<p>1). 参数</p>
+<pre><code> ()中的内容就是函数的参数
+ 函数中可以没有参数，也可以有多个参数，多个参数之间使用,隔开</code></pre>
+<p>2). 返回值</p>
+<pre><code> 返回值是函数的返回结果，不是所有的函数都有返回值
+</code></pre>
+<h4>Python的基本语法</h4>
+<ul>
+<li>在Python中严格区分大小写</li>
+<li>Python中的每一行就是一条语句，每条语句以换行结束</li>
+<li>Python中每一行语句不要过长（规范中建议每行不要超过80个字符）</li>
+<li>一条语句可以分多行编写，多行编写时语句后边以结尾</li>
+<li>Python是缩进严格的语言，所以在Python中不要随便写缩进</li>
+<li>在Python中使用#来表示注释，#后的内容都属于注释，注释的内容将会被解释器所忽略</li>
+</ul>
+<p>我们可以通过注释来对程序进行解释说明，一定要养成良好的编写注释的习惯<br>注释要求简单明了，一般习惯上#后边会跟着一个空格</p>
+<h4><strong>字面量和变量</strong></h4>
+<p>字面量就是一个一个的值，比如：1，2，3，4，5，6，‘HELLO’</p>
+<p>字面量所表示的意思就是它的字面的值，在程序中可以直接使用字面量</p>
+<p>变量（variable）变量可以用来保存字面量，并且变量中保存的字面量是不定的</p>
+<p>变量本身没有任何意思，它会根据不同的字面量表示不同的意思</p>
+<p>一般我们在开发时，很少直接使用字面量，都是将字面量保存到变量中，通过变量来引用字面量</p>
+<h4><strong>数据类型</strong></h4>
+<p>数据类型指的就是变量的值得类型，也就是可以为变量赋哪些值</p>
+<p>在Python中，能够直接处理的数据类型有以下几种：整数、浮点数、字符串、布尔值、列表、元组、字典、集合。</p>
+<p>以后我们详细介绍这几个数据类型。</p>
+<h4>对象（object）</h4>
+<p>Python是一门面向对象的语言</p>
+<ul>
+<li>一切皆对象！</li>
+<li>程序运行当中，所有的数据都是存储到内存当中然后再运行的！</li>
+<li>对象就是内存中专门用来存储指定数据的一块区域</li>
+<li>对象实际上就是一个容器，专门用来存储数据</li>
+<li>像我们之前学习的数值、字符串、布尔值、None都是对象</li>
+</ul>
+<h4>对象的结构</h4>
+<p>每个对象中都要保存三种数据</p>
+<p>1). id（标识）</p>
+<ul>
+<li>id用来标识对象的唯一性，每一个对象都有唯一的id</li>
+<li>对象的id就相当于人的身份证号一样</li>
+<li>可以通过id()函数来查看对象的id</li>
+<li>id是由解析器生成的，在CPython中，id就是对象的内存地址</li>
+<li>对象一旦创建，则它的id永远不能再改变</li>
+</ul>
+<p>2). type（类型）</p>
+<ul>
+<li>类型用来标识当前对象所属的类型</li>
+<li>比如：int str float bool</li>
+<li>类型决定了对象有哪些功能</li>
+<li>通过type()函数来查看对象的类型</li>
+<li>Python是一门强类型的语言，对象一旦创建类型便不能修改</li>
+</ul>
+<p>3). value（值）</p>
+<ul>
+<li>值就是对象中存储的具体的数据</li>
+<li>对于有些对象值是可以改变的</li>
+<li>对象分成两大类，可变对象 不可变对象</li>
+<li>可变对象的值可以改变</li>
+<li>不可变对象的值不能改变</li>
+</ul>
+<h4>变量和对象</h4>
+<ul>
+<li>对象并没有直接存储到变量中，在Python中变量更像是给对象起了一个别名</li>
+<li>变量中存储的不是对象的值，而是对象的id（内存地址），</li>
+<li>当我们使用变量时，实际上就是在通过对象id在查找对象</li>
+<li>变量中保存的对象，只有在为变量重新赋值时才会改变</li>
+<li>变量和变量之间是相互独立的，修改一个变量不会影响另一个变量</li>
+</ul>
+<p><strong>类型转换</strong></p>
+<ul>
+<li>所谓的类型转换，将一个类型的对象转换为其他对象</li>
+<li>类型转换不是改变对象本身的类型，而是根据当前对象的值创建一个新对象</li>
+</ul>
+<h4>运算符(操作符)</h4>
+<p>运算符可以对一个值或多个值进行运算或各种操作</p>
+<p>比如 + 、-、= 都属于运算符</p>
+<p><strong>运算符的分类：</strong></p>
+<p>1.算术运算符<br>2.赋值运算符<br>3.比较运算符（关系运算符）<br>4.逻辑运算符<br>5.条件运算符（三元运算符）</p>
+
+                                                            </div>
+                                

@@ -1,0 +1,44 @@
+python字符串转字典<br /><br />
+                                                                        
+<h2><b>方法一</b></h2>
+<ul><li>最常见的一种，使用json进行转换</li></ul>
+<pre><code class="python">import json
+s = {"name": "张三"}
+print(json.loads(s))
+------
+
+{'name': '张三'}</code></pre>
+<ul><li>但是这种方式有可能会出现问题，例如单引号的情况</li></ul>
+<pre><code class="python">s = "{'name': '张三'}"
+print(json.loads(s))
+------
+
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)</code></pre>
+<h2><b>方法二</b></h2>
+<ul><li>使用eval</li></ul>
+<pre><code class="python">s = "{'name': '张三'}"
+print(eval(s))
+------
+
+{'name': '张三'}</code></pre>
+<h2><b>方法三</b></h2>
+<ul><li>使用ast.literal_eval</li></ul>
+<pre><code class="python">import ast
+s = "{'name': '张三'}"
+print(ast.literal_eval(s))
+------
+
+{'name': '张三'}
+</code></pre>
+<p>参考链接：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.wxy.email%2F2019%2F08%2F01%2Fstringtodict%2F" target="_blank" data-url="https://www.wxy.email/2019/08/01/stringtodict/">时光不写博客-python字符串转字典</a></p>
+
+                                                            </div>
+                                

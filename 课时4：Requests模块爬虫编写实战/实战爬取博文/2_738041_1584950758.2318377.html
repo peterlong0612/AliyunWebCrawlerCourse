@@ -1,0 +1,50 @@
+最常见Python面试题及答案：说说Python变量、函数、类的命名规则<br /><br />
+                                                                        
+<p>最常见<strong>Python面试题及答案</strong>总结教程又来啦：本期的<strong>Python常见面试题</strong>跟大家说的是：Python变量、函数、类的命名规则！不知道的同学拿出笔记本啦！下面开始：</p>
+<p><strong>问：Python变量、函数、类的命名规则？</strong></p>
+<p>答：Python命名规范在编写代码中起到很重要的作用，虽然不遵循命名规范，程序可能也可以运行，但是使用命名规范可以更加直观地了解代码所代表的含义。</p>
+<p><strong>Python的命名规范（其它编程语言也差不多）</strong></p>
+<p>(1)不能以数字开头，不能出现中文。</p>
+<p>(2)命名以字母开头，包含数字，字母（区分大小写），下划线。</p>
+<p>(3)不能包含关键字，见名知意。</p>
+<p><strong>下面具体说说Python的命名规范:</strong></p>
+<p><strong>1、类</strong></p>
+<p>单词首字母总是大写，私有类可以下划线开头。如MyClass。</p>
+<p>class MyClass()：<br> pass<br>class MySchool()：<br> pass</p>
+<p><strong>2、函数</strong></p>
+<p>函数名一律小写，若有多个单词用下划线隔开。另外，私有函数下划线开头 。</p>
+<p>def my_func(var1, var2):<br> pass</p>
+<p>def _private_func(var1, var2):<br> pass</p>
+<p><strong>3、变量</strong></p>
+<p>变量名最好小写，若有多个使用下划线分开 。</p>
+<p>常量使用全大写，多个单词使用下划线隔开 。</p>
+<p>num = 20<br>this_is_a_variable = 1<br>MAX_NUM = 1000</p>
+<p><strong>额外补充：</strong></p>
+<p><strong>缩写：</strong></p>
+<p>命名应当尽量使用全拼写的单词，缩写的情况有如下两种：</p>
+<p>1.常用的缩写，如XML、ID等，在命名时也应只大写首字母，如XmlParser。</p>
+<p>2.命名中含有长单词，对某个单词进行缩写。这时应使用约定成俗的缩写方式。</p>
+<p>例如：</p>
+<p>function 缩写为 fn</p>
+<p>text 缩写为 txt</p>
+<p>object 缩写为 obj</p>
+<p>count 缩写为 cnt</p>
+<p>number 缩写为 num，等。</p>
+<p><img src="https://yqfile.alicdn.com/05a72a84d42fd86f0046e65328e886379e4206b2.png" alt="py" title="py"><br>最常见Python面试题及答案：说说Python变量、函数、类的命名规则<br><strong>前导后缀下划线</strong></p>
+<p>一个前导下划线：表示非公有。</p>
+<p>一个后缀下划线：避免关键字冲突。</p>
+<p>两个前导下划线：当命名一个类属性引起名称冲突时使用。</p>
+<p>两个前导和后缀下划线：“魔”（有特殊用图）对象或者属性，例如__init__或者__file__。绝对不要创造这样的名字，而只是使用它们。</p>
+<p>注意：关于下划线的使用存在一些争议。</p>
+<p><strong>特定命名方式</strong></p>
+<p>主要是指 <strong>xxx</strong> 形式的系统保留字命名法。项目中也可以使用这种命名，它的意义在于这种形式的变量是只读的，这种形式的类成员函数尽量不要重载。如</p>
+<p>class Base(object):</p>
+<p>def __init__(self, id, parent = None):</p>
+<p>self.__id__ = id</p>
+<p>self.__parent__ = parent</p>
+<p>def __message__(self, msgid):</p>
+<p>其中 <strong>id__、__parent</strong> 和 <strong>message</strong> 都采用了系统保留字命名法。</p>
+<p>好啦本期的<strong>常见Python面试题及答案</strong>总结教程先到这里，我总结的不一定完善，伙伴们可以留言补充哈，感谢你的阅读！希望对你有备注。更多的<strong>Python常见面试题及答案</strong>也会继续为大家分享！</p>
+
+                                                            </div>
+                                

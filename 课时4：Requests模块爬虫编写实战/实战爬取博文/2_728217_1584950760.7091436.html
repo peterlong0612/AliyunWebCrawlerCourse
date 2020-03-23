@@ -1,0 +1,45 @@
+记一次win server 2012的离线python环境安装(包括whl和setup.py)<br /><br />
+                                                                        
+<h2>目录</h2>
+<ul>
+<li>前言</li>
+<li>python3 exe安装</li>
+<li>pip whl安装</li>
+<li>setup.py安装</li>
+<li>最后</li>
+</ul>
+<hr>
+<h2>前言</h2>
+<blockquote>
+<p>总有某些公司是offline的, 你懂的, 然后用着古老的服务器. 所有有了这种奇怪的需求. 这里分成三个部分来说,</p>
+<ul>
+<li>首先是py3的离线安装, 就是大家熟悉的exe安装.</li>
+<li>然后是pip使用下载好的whl文件进行库的安装.</li>
+<li>最后是使用setup.py进行安装.</li>
+</ul>
+</blockquote>
+<hr>
+<h2>python3 exe安装</h2>
+<blockquote><p>首先来到<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2Fdownloads%2Fwindows%2F" target="_blank" data-url="https://www.python.org/downloads/windows/">官网的Windows下载页</a>, 选择合适的版本, 比如我选的py3.7.5的64位exe安装包:</p></blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9cc6ze4zcj30t40q0wg7.jpg" alt="py3安装文件下载" title="py3安装文件下载"></p>
+<blockquote><p>然后就是常规安装, 记得勾选Add...</p></blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9ccde98z6j30sg0memy7.jpg" alt="py3安装" title="py3安装"></p>
+<blockquote><p>装完之后打开powershell测试一下:</p></blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9cceg32ctj30sg0me74i.jpg" alt="测试" title="测试"></p>
+<hr>
+<h2>pip whl安装</h2>
+<blockquote><p>然后<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fpypi.org%2Fproject%2Flxml%2F%23files" target="_blank" data-url="https://pypi.org/project/lxml/#files">下载必备的lxml文件</a>, 选择对应的版本:</p></blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9ccli9u95j30sx0n8q40.jpg" alt="lxml下载" title="lxml下载"></p>
+<blockquote><p>之后<code>pip install whl文件路径</code>即可.</p></blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9ccrwue0cj30sg0meq38.jpg" alt="whl安装" title="whl安装"></p>
+<hr>
+<h2>setup.py安装</h2>
+<blockquote><p>为啥说python-docx典型呢, 因为它只有source, 没有whl文件.</p></blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9cct58btuj30ve0gs3yy.jpg" alt="下载docx" title="下载docx"></p>
+<blockquote><p>然后进入目录, 运行<code>python setup.py install</code>即可.<br>值得一提的就是, python-docx是依赖lxml的, 所以要先装lxml, 当然, py3的安装肯定是最先的.</p></blockquote>
+<hr>
+<h2>最后</h2>
+<blockquote><p>喜欢记得点赞, 有意见或者建议, 评论区见哦~</p></blockquote>
+
+                                                            </div>
+                                

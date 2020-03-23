@@ -1,0 +1,240 @@
+learning_python_start<br /><br />
+                                                                        
+<h3>初识 Python</h3>
+<ul>
+<li>python 是解释型编程语言。</li>
+<li>python 中单行注释: <code>#</code>。</li>
+<li>python 中多行注释: 一对三引号，即<code>"""</code>和<code>"""</code>。</li>
+<li>python 中提供<code>todo</code>功能，在代码中注明<code># TODO</code>即可。</li>
+</ul>
+<h3>变量</h3>
+<ul>
+<li>变量用于描述计算机中的数据存储空间，作用是在计算机内存中动态地保存数据。</li>
+<li>变量名的命名规则是由<strong>数字、字母和下划线</strong>组成，不能以数字开头，不能是关键字，区分大小写。</li>
+<li>变量的书写规范有下划线连接，驼峰命名法等</li>
+</ul>
+<blockquote>
+<p>如</p>
+<pre><code class="python">demo_demo = 1
+demoDemo = 2
+DemoDemo = 3</code></pre>
+</blockquote>
+<ul><li>查看 python 中关键字可用下面的语句，运行结果如图所示。</li></ul>
+<blockquote><pre><code class="python">import keyword
+print(keyword.kwlist)</code></pre></blockquote>
+<p><img src="https://yqfile.alicdn.com/a47d1fe323d0debb25be021903fb3f3ca1484633.png" alt="01" title="01"></p>
+<h3>标准输入输出</h3>
+<ul>
+<li>输入：<code>input()</code>
+</li>
+<li>
+<p>输出：<code>print()</code></p>
+<ul>
+<li>%s，字符串占位符</li>
+<li>%d，整数占位符</li>
+<li>%f，浮点数占位符</li>
+<li>%%，输入%\</li>
+</ul>
+</li>
+</ul>
+<h3>python运算</h3>
+<ul>
+<li>
+<p>字符串运算</p>
+<ul>
+<li>
+<code>+</code>：拼接</li>
+<li>
+<code>*</code>：连续拼接</li>
+</ul>
+</li>
+<li>
+<p>算术运算符</p>
+<ul>
+<li>
+<code>+</code>，加</li>
+<li>
+<code>-</code>，减</li>
+<li>
+<code>*</code>，乘</li>
+<li>
+<code>/</code>，除</li>
+<li>
+<code>/</code>，整除</li>
+<li>
+<code>%</code>，取余</li>
+<li>
+<code>**</code>，乘方</li>
+<li>优先级，乘方 &gt; [乘，除，整除，取余] &gt; [加，减]</li>
+</ul>
+</li>
+<li>
+<p>赋值运算符</p>
+<ul>
+<li>
+<code>=</code>，赋值</li>
+<li>
+<code>+=</code>，加后赋值</li>
+<li>
+<code>-=</code>，减后赋值</li>
+<li>
+<code>*=</code>，乘后赋值</li>
+<li>
+<code>/=</code>，除后赋值</li>
+<li>
+<code>//=</code>，整除后赋值</li>
+<li>
+<code>%=</code>，取余后赋值</li>
+<li>
+<code>**=</code>，次方后赋值</li>
+</ul>
+</li>
+<li>
+<p>比较运算符</p>
+<ul>
+<li>
+<code>&gt;</code>，大于</li>
+<li>
+<code>&gt;=</code>，大于等于</li>
+<li>
+<code>&lt;</code>，小于</li>
+<li>
+<code>&lt;=</code>，小于等于</li>
+<li>
+<code>!=</code>，不低于</li>
+<li>
+<code>==</code>，等于</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如何比较字符大小？</p>
+<ul>
+<li>查看字母和数字的ASCII值；</li>
+<li>查看指定字符的 ASCII 值：<code>ord()</code>；</li>
+<li>已知 ASCII 值查看对应的字符：<code>chr()</code>。<br><hr>
+</li>
+</ul>
+<pre><code class="ipython">In [1]: ord('a')
+Out[1]: 97
+In [2]: chr(97)
+Out[2]: 'a' </code></pre>
+</blockquote>
+<ul><li>
+<p>关系运算符（逻辑运算符）</p>
+<ul>
+<li>
+<code>and</code>：短路与，若左操作数为 False，表达式结果为 False，。</li>
+<li>
+<code>or</code>：短路或，若左操作数为 True ，表达式结果为 True。</li>
+<li>
+<code>not</code>：取反操作。</li>
+<li>一些例子：</li>
+</ul>
+</li></ul>
+<table>
+<thead><tr>
+<th>表达式</th>
+<th>结果</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1 and True</td>
+<td>True</td>
+</tr>
+<tr>
+<td>0 and True</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1 or True</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0 or True</td>
+<td>True</td>
+</tr>
+<tr>
+<td>1 and False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>0 and False</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1 or False</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0 or False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>True and 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>True and 0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>True or 1</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True or 0</td>
+<td>True</td>
+</tr>
+<tr>
+<td>False and 1</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False and 0</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False or 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>False or 0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3>三大语句</h3>
+<ul>
+<li>顺序语句：自上而下执行语句</li>
+<li>
+<p>分支语句</p>
+<ul>
+<li>if...</li>
+<li>if...else...</li>
+<li>if...elif...else...</li>
+<li>分支嵌套</li>
+</ul>
+</li>
+<li>
+<p>循环结构</p>
+<ul>
+<li>while</li>
+<li>for...in...</li>
+<li>for...in...else...，循环正常结束后执行else部分。</li>
+<li>while...else...</li>
+<li>break，终止循环的执行</li>
+<li>continue，终止本轮循环的执行</li>
+<li>range(m, n, s): 生成 m（默认为0） 到 n-1 的整数，整数间隔为 s（默认为1）。</li>
+<li>推导式的使用</li>
+</ul>
+</li>
+</ul>
+<blockquote><pre><code class="python">list1 = [data for data in range(5)]
+list1 = [data**2 for data in range(5)]
+list1 = [data for data in range(5) if data &gt; 2]</code></pre></blockquote>
+<p></p>
+<hr>
+<br>感谢阅读，本文首发于 <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Fyhw-miracle.cn%2Flearning_python_start" target="_blank" data-url="http://yhw-miracle.cn/learning_python_start">learning_python_start</a>。
+                                                            </div>
+                                

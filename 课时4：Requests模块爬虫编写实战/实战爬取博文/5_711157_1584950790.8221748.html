@@ -1,0 +1,32 @@
+Python爬虫原理详解 简单易懂<br /><br />
+                                                                        
+<p>什么是Python爬虫？Python爬虫原理是什么？Python爬虫代码是如何实现的？码笔记分享Python介绍及爬虫原理详解：</p>
+<h1>什么是Python爬虫？</h1>
+<p>我们可以把互联网看成是各种信息的站点及网络设备在一起组成的一张蜘蛛网，这张网中什么信息都有，而我们上网就是获取互联网中信息内容的过程。</p>
+<p>那么什么是爬虫？爬虫就是一段模拟人们上网的程序，爬虫可以抓取互联网上的信息，Python爬虫就是用Python语言写的一段爬虫程序。</p>
+<p>Python爬虫抓取什么信息呢？想抓什么内容就抓什么内容，看用户如何自定义了。</p>
+<h2>Python爬虫的结构</h2>
+<p><img src="https://yqfile.alicdn.com/ed416efc6c20d48f5a7e41497842b35c43341f95.jpeg" alt="Python爬虫架构" title="Python爬虫架构"></p>
+<p>Python爬虫主要是由5部分组成，即调度器、URL管理器、网页下载器、网页解析器、应用程序（应用程序用来爬取有价值数据），码笔记来详细介绍这5个组成部分的作用：</p>
+<ul>
+<li>调度器：相当于人的大脑、电脑的CPU，调度器负责调度URL管理器、下载器、解析器之间的协调工作；</li>
+<li>URL管理器：爬虫抓取内容的URL地址（网址），URL包括未爬取的URL地址和已爬取的URL地址，URL管理器能够防止重复抓取URL和循环抓取URL。实现URL管理器主要用三种方式，通过内存、数据库、缓存数据库来实现；<br>网页下载器：通过传入一个URL地址来下载网页，将网页转换成一个字符串，网页下载器有urllib2，urllib2是Python官方的基础模块；</li>
+<li>网页解析器：用来解析网页的字符串，网页解析器可以按照我们的要求来提取出对我们有用的信息，也可以根据DOM树的解析方式来解析。</li>
+<li>网页解析器有正则表达式、html.parser（Python自带）、beautifulsoup（第三方插件）、lxml（第三方插件），html.parser 和 beautifulsoup 以及 lxml 都是以 DOM 树的方式进行解析的。</li>
+<li>应用程序：就是从网页中提取的有用数据组成的一个应用。</li>
+</ul>
+<h2>爬虫工作的基本流程</h2>
+<p>前面码笔记已经说了，爬虫就一段模拟用户上网并从互联网中获取信息的程序，码笔记来详细说下爬虫的工作流程：</p>
+<ul>
+<li>人们正常上网过程：通过浏览器提交请求给网站服务器（打开浏览器输入网址或者通过搜索引擎搜索打开网址） --&gt; 下载网页代码 --&gt; 浏览器解析成页面 --&gt; 用户浏览</li>
+<li>爬虫爬取信息的过程：模拟浏览器发送请求获取网页代码 --&gt; 按照代码设置提取有用的数据 --&gt; 存放于数据库或文件中</li>
+</ul>
+<h2>详解Python爬虫的工作流程：</h2>
+<ul>
+<li>①Python爬虫程序使用http库向目标站点发起请求，即发送一个Request请求；</li>
+<li>②服务器响应请求，爬虫会得到一个Response；Python爬虫通过正则表达式（RE模块）或者第三方解析库（例如：Beautifulsoup、pyquery）去解析HTML数据，使用JSON模块解析JSON数据；</li>
+<li>③Python爬虫将数据保存到数据库（MySQL，Mongdb、Redis等）或者文件中。<br>阿里云大学推出Python免费学习课程：<a href="https://edu.aliyun.com/roadmap/python?source=5176.11533457&amp;userCode=r3yteowb&amp;type=copy" target="_blank">《Python学习路线》</a>，包括Python语言基础 、Python Web开发及爬虫及数据分析，很值得关注。</li>
+</ul>
+
+                                                            </div>
+                                

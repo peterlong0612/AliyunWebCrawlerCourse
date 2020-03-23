@@ -1,0 +1,49 @@
+给Android开发的Python入门指南<br /><br />
+                                                                        
+<blockquote><p>本文首发于公众号“AntDream”，欢迎微信搜索“AntDream”或扫描文章底部二维码关注，和我一起每天进步一点点</p></blockquote>
+<h3>首先是安装和配置环境</h3>
+<p>安装和配置Python有2种方式：</p>
+<p>一种是通过安装<code>Anaconda</code>, <code>Anaconda</code>类似一个包管理工具，里面集合了关于Python的很多信息，包括三方库、网站博客等。此外还有一个比较大的特点是<code>Anaconda</code>里面有很多的数据科学和深度学习方面的库，安装很方便。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-03fc159e93e0188f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Anaconda界面" title="Anaconda界面"></p>
+<p>另一种是手动安装<code>Python</code>，和IDE工具，比如<code>PyCharm</code></p>
+<p>作为Android开发者，初期还是建议用第二种方式，主要是<code>PyCharm</code>和<code>Android Studio</code>的界面和功能比较类似，能很快地上手。</p>
+<h4>安装Python和PyCharm</h4>
+<ul><li>Python</li></ul>
+<p><code>Python</code>的下载地址：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2Fdownloads%2F" target="_blank" data-url="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p>
+<p>需要注意的是现在<code>Python3</code>已经很流行了，所以下载安装最新的<code>Python3.x</code>版本安装就好</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-1bae6f896a1a23a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Python版本选择最新的就好" title="Python版本选择最新的就好"></p>
+<p>安装好以后，打开终端，输入<code>python3</code>不报错，就表示安装成功</p>
+<ul><li>PyCharm</li></ul>
+<p><code>PyCharm</code>的下载地址：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.jetbrains.com%2Fpycharm%2Fdownload%2F%23section%3Dmac" target="_blank" data-url="https://www.jetbrains.com/pycharm/download/#section=mac">https://www.jetbrains.com/pycharm/download/#section=mac</a></p>
+<p><code>PyCharm</code>下载一个社区版就行，社区版是免费的</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-8b8c4f8d73de01b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="下载PyCharm" title="下载PyCharm"></p>
+<h3>PyCharm运行第一个Python</h3>
+<p>打开<code>PyCharm</code>以后，你应该就会发现，这和我们一直用的<code>Android Studio</code>简直是一个模子里刻出来的！</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-505c3d7f7528a735.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="PyCharm和Android Studio很像" title="PyCharm和Android Studio很像"></p>
+<p><code>PyCharm</code>里面除了有<code>终端</code>可以直接执行<code>shell</code>命令外，还有Python的终端，可以在里面直接执行Python代码：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-c45183c907620498.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Python终端" title="Python终端"></p>
+<h4>编写第一个Python程序</h4>
+<p>首先我们要新建一个Python文件，也就是以<code>.py</code>结尾的文件</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-3cd95d76c0b3f12f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建Python文件" title="新建Python文件"></p>
+<p>创建完文件以后，就可以编写Python代码了，这里我们简单举例输出'hello world'</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-70f0756144b7fa52.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title=""></p>
+<p>文件内容如图中所示，需要注意写明文件的编码格式，同时要想执行这个文件的话，需要声明<code>main</code>入口。直接在代码里面输入<code>main</code>就会有代码提示出来，很方便</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-169d2f791cfcea9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title=""></p>
+<p>代码写完以后，我们就来运行试试。运行可以直接在终端里面运行。运行命令为<code>python3 xxx.py</code>。还有一种更快捷的方式是直接用Pycharm的<code>run</code>图标，就像我们运行Android项目一样。但在运行之前，需要配置下代码的运行环境。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-3ec772a1e0947a21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置环境几步走" title="配置环境几步走"></p>
+<p>最后点击<code>run</code>运行图标，就会执行我们刚刚编写的Python程序了。</p>
+<h3>常见的一些设置</h3>
+<h4>设置文件开头的注释模版</h4>
+<p>我们一般新建一个文件，都需要注释一些信息，比如创建的时间、作者、功能等。这些可以通过模板来做，和Android Studio类似。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-91921cd93e0f69c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="设置代码注释" title="设置代码注释"></p>
+<p>这样设置以后每次新建Python文件就都会有一个注释的头部信息了</p>
+<h4>添加新的三方库</h4>
+<p>我们在开发中肯定会需要添加很多的三方库，Pycharm安装三方库也很方便：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-e008ff2c852b781b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加安装三方库" title="添加安装三方库"></p>
+<h4>修改Pycharm的主题和字体等</h4>
+<p>这个设置和Android Studio也是类似的</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2196721-31ee3b65089e7ae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="样式修改" title="样式修改"></p>
+<p>其他的和Android Studio都是类似的，比如快捷键这些，大家用一用就有感觉了。</p>
+
+                                                            </div>
+                                

@@ -1,0 +1,27 @@
+Python解析excel——openpyxl<br /><br />
+                                                                        
+<h2>前言</h2>
+<p>前段时间的工作都是围绕着AWS的autoscaling展开的，写terraform，修改AWS的配置，然后用python写一个lambda。就是这段时间给了我一个可以学习学习python的机会。（本来自己就想学，但是工作一直没用到就搁置了）。<br>Python的寄出学完之后，我就想着用python写点什么，真正的应用一下，于是就开始尝试如何用python解析excel。</p>
+<h2>正文</h2>
+<p>代码可以直接查看<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fgithub.com%2Fluckypoison%2FpythonNote" data-url="https://github.com/luckypoison/pythonNote">https://github.com/luckypoison/pythonNote</a>中的excelResolve.py<br>在excel的概念中最大单元是<strong>workbook</strong>，可以说它是整个excel的一个映射，然后在一个workbook中存在这多个<strong>sheet</strong>，每一个sheet中，每一个单元格就是一个<strong>cell</strong>，这就是我们可以得到的最小单元了。<br>由于我们使用的是openpyxl，所以我们需要先引一下这个包：</p>
+<pre><code># 引入opnepyxl来解析excel
+import openpyxl as xl</code></pre>
+<p>我们可以这样获取workbook：</p>
+<pre><code># excel_name 是文件的字符串，如果不指定路径，指的是当前路径
+xl.load_workbook(excel_name)</code></pre>
+<p>我们可以这样获取sheet</p>
+<pre><code># excel_workbook为刚刚拿到的workbook的实例，sheet_name为excel中sheet的名字，新建的情况下为“Sheet1”
+excel_workbook[sheet_name]</code></pre>
+<p>我们可以这样获取cell</p>
+<pre><code># excel_sheet为刚刚获取到的sheet实例，cell_position为一个字符串（如果为第一行第一列，位置为a1）
+excel_sheet[cell_position]</code></pre>
+<p>获取cell中的值</p>
+<pre><code>excel_sheet[cell_position].value</code></pre>
+<p>修改cell中的值</p>
+<pre><code>excel_sheet[cell_position].value = 修改后的值
+# 最后一定不要忘记save文件
+excel_workbook.save('文件名')</code></pre>
+<blockquote><p>Tips: 修改后要记得，保存一下文件，就相当于另存为了，我试过如果另存为的名字和原始文件的名字一样，原始文件不发生变化，所以保存文件要起另外一个名字。</p></blockquote>
+
+                                                            </div>
+                                

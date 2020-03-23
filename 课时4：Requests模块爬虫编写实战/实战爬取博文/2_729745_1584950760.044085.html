@@ -1,0 +1,115 @@
+Python的小数据存储，用什么格式更有逼格？<br /><br />
+                                                                        
+<p><strong>小数据存储</strong></p>
+<p>我们在编写代码的时候，经常会涉及到数据存储的情况，如果是爬虫得到的大数据，我们会选择使用数据库，或者excel存储。但如果只是一些小数据，或者说关联性较强且存在存储后复用的数据，我们该如何存储呢？</p>
+<p><strong>使用open保存文本</strong></p>
+<p>最简单、粗暴+无脑的存储方式就是保存成一个文本文档了。<br>使用open函数，将结果一行行的保存成文本,这里涉及的知识点只有简单的几条：</p>
+<ul>
+<li>文件读写模式，r 、w、a、b、+ ,掌握这几种即可。</li>
+<li>使用单独的open打开文件时，需要注意结尾时的调用close()函数关闭文档</li>
+<li>推荐使用上下文管理器的with open操作</li>
+</ul>
+<p><strong>csv文件</strong></p>
+<p>之所以将csv与excel分开说，首先需要扫盲下，csv属于特定格式的文本文件(使用逗号分隔)，而excel是二进制文件。</p>
+<p>csv可以直接使用文本编辑器打开，excel不行…</p>
+<p>其实csv文件，完全可以使用open函数进行保存，只要你将每行数据都使用,分隔开即可。<br>另外，python自带csv库，可以很方便的操作与保存该数据</p>
+<p><strong>xml文件</strong></p>
+<p>xml文件的方式，已经逐渐被淘汰了，为什么这么说？因为它繁琐的树形结构，导致了在传输过程中，占用了更多的内存。所以，除非必要，真的不推荐以xml的形式存储你的数据…</p>
+<p><strong>configparser</strong></p>
+<p>python模块中configparser是一个专门用来保存配置文件的模块库，它非常适合保存一些具有关联性的数据内容，尤其是配置文件。通过定义section的方式，在section中添加key:value的方式，可以直观明了的数据内容。我之前专门写了一篇关于它的文章，会附在公众号的字文章中，喜欢的朋友可以去看看。</p>
+<p><strong>pyyaml</strong></p>
+<p>yaml类型的文件已经成为很多Linux下的主流配置文件类型，比如Docker、Ansible等等都在使用yaml，但它依然不是一个主流的数据存储方式，因为yaml本身的格式要求太过严苛，比结构化的Python格式更为严格，喜欢的朋友可以去研究下…</p>
+<p><strong>pickle</strong></p>
+<p>pickle模块的使用面很窄，但不得不说还是有些人会使用，所以简单说些它的优劣:<br>优势：接口简单(与json相似)；存储格式通用型，及在Windows、Linux等平台下通用；二进制存储，效率高<br>劣势：pickle是python特定的协议，其他语言无法使用；pickle存在安全性，这个要着重说下，看下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13717038-f61926eb2a26a76b?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="pickle安全性" title="pickle安全性"></p>
+<p><strong>Json文件</strong></p>
+<p>说了上面那么多，压轴的还是Json！</p>
+<p>首先相对于xml，现在更多的网站在数据传输中使用json格式，因为同等的字节下，json传输数据的效率要更高于xml。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/13717038-8e66dfa9daeac52d?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="json与xml对比" title="json与xml对比"></p>
+<p>对于configparser，configparser有一个巨大的劣势，在于配置文件只能支持二维，section下定义option(key:value)，如果想在option的value中再次定义列表、字典等数据类型，它只能识别为字符串，你需要将str手动再转化为对应的数据类型</p>
+<p>而针对ymal，json没有那么严格的格式要求，写做一行还是换行展示都随你，没有那么严苛的要求。<br>最后对比pickle，json格式是各种编程语言通用的数据格式，由于是key value的键值对，不存在loads之后的安全问题。而且你学会了json，也就学会了pickle，因为二者的使用方式一毛一样啊！</p>
+<p><strong>三分钟学会Json</strong></p>
+<p><strong>1.简介</strong></p>
+<p>JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。它基于 ECMAScript (欧洲计算机协会制定的js规范)的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。</p>
+<p>至于推荐使用Json的理由：</p>
+<ol>
+<li>Json格式是一种通用的数据类型</li>
+<li>Python内置json模块，便于操作</li>
+<li>json格式类似于python的dict</li>
+<li>json的保存与读取极为方便</li>
+<li>学习成本低，3分钟包教包会</li>
+</ol>
+<p><strong>2.类型、语法说明</strong><br><img src="https://upload-images.jianshu.io/upload_images/13717038-ddab19ad9fc06a44?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在这里插入图片描述" title="在这里插入图片描述"></p>
+<p>看到上图的Python与json对比关系，其实差异并不大，我们只需要注意几点即可：</p>
+<ul>
+<li>json的数据为key：value，且以逗号分隔，但注意json使用双引号包裹键值对</li>
+<li>花括号中保存为对象，而方括号保存的是数组，不论python是list还是tuple，最终都会转化为数组</li>
+<li>json由于是js引申的数据类型，所以在布尔表达式与空值上，使用与python不同，需要注意</li>
+</ul>
+<p><strong>3.json的方法</strong></p>
+<ul>
+<li>dump():将python对象序列化到一个文件，是文本文件，相当于将序列化后的json字符写到一个文件</li>
+<li>load():从文件反序列表出python对象</li>
+<li>json和pickle相同，都只有四个方法：</li>
+<li>dumps()：将python对象编码为json的字符串</li>
+<li>loads():将字符串编码为一个python对象</li>
+</ul>
+<p>即：带s的方法是数据类型间的转化str &lt;--&gt; dict，不带s的都是数据与文件的转化</p>
+<p><strong>4.实例说明</strong></p>
+<p>在演示前，我们需要先定义一个初始化数据：</p>
+<pre><code class="python">data = {
+    "in_use": True,
+    "info": {
+        "name_cn": 'Python',
+        "name_en": "BreezePython",
+    },
+    "contents": ["Python", "Java", "Linux"]
+
+}</code></pre>
+<p><strong>5.dumps() .loads()</strong></p>
+<pre><code class="python">import json
+json.dumps(data)
+&gt;&gt;&gt; '{"in_use": true, "info": {"name_cn": "\\u6e05\\u98cePython", "name_en": "BreezePython"}, "contents": ["Python", "Java", "Linux"]}'
+#Python学习交流QQ群：857662006 
+#这里大家看到一个问题，中文异常，此时我们需要添加参数ensure_ascii=False
+json.dumps(data,ensure_ascii=False)
+&gt;&gt;&gt; '{"in_use": true, "info": {"name_cn": "Python", "name_en": "BreezePython"}, "contents": ["Python", "Java", "Linux"]}'
+# 当然我们可以美观的打印它
+json_data = json.dumps(data, sort_keys=True, indent=4, separators=(',', ': '),ensure_ascii=False)
+print(json_data)
+&gt;&gt;&gt; {
+    "contents": [
+        "Python",
+        "Java",
+        "Linux"
+    ],
+    "in_use": true,
+    "info": {
+        "name_cn": "Python",
+        "name_en": "BreezePython"
+    }
+}
+
+# 了解了dumps，loads就比较简单了...
+json.loads(json_data)
+{'contents': ['Python', 'Java', 'Linux'], 'in_use': True, 'info': {'name_cn': 'Python', 'name_en': 'BreezePython'}}</code></pre>
+<p><strong>6.dump() .load()</strong></p>
+<pre><code class="python">import json
+# Python学习交流QQ群：857662006 
+# 先来看看dump将数据保存至文本
+with open('data.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, indent=4)
+    # 同理我们还可以使用dumps完成写入操作
+    # f.write(json.dumps(data, indent=4))
+
+# 保存了文本，我们在通过load读取出来
+with open('data.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+    # 同理我们还可以使用loads完成读取操作
+    # data = json.loads(f.read())
+print(data)
+&gt;&gt;&gt; {'in_use': True, 'info': {'name_cn': 'Python', 'name_en': 'BreezePython'}, 'contents': ['Python', 'Java', 'Linux']}</code></pre>
+<p>看到这里，你是否发现，即便不会dump和load我们一样可以使用dumps和loads替换前两者，完成读写操作。三分钟学会了json的操作，并且买一送一附带学会了pickle的操作。你是否get到？</p>
+
+                                                            </div>
+                                

@@ -1,0 +1,69 @@
+不可不学Numpy，带你快速撸Numpy代码，（Python学习教程）一遍过<br /><br />
+                                                                        
+<p>我们一起来学习Python数据分析的工具学习阶段，包括Numpy，Pandas以及Matplotlib，它们是python进行科学计算，数据处理以及可视化的重要库，在以后的数据分析路上会经常用到，所以一定要掌握，并且还要熟练！今天的<strong>Python学习教程</strong>先从Numpy开始！</p>
+<p><strong>本文目标</strong></p>
+<p><strong>初识Numpy</strong></p>
+<ul>
+<li>ndarray的增删改查</li>
+<li>ndarray切片与筛选</li>
+<li>ndarray运算与排序</li>
+</ul>
+<p><strong>NumPy 简介</strong></p>
+<p>NumPy 是 Numerical Python 的简称，它是 Python 中的科学计算基本软件包。NumPy 为 Python 提供了大量数学库，使我们能够高效地进行数字计算。更多可点击Numpy官网查看。</p>
+<p>其实在前面的<strong>Python学习教程</strong>中就有跟大家讲过Numpy！</p>
+<p>关于Numpy需要知道的几点：</p>
+<ul>
+<li>NumPy 数组在创建时有固定的大小，不同于Python列表（可以动态增长）。更改ndarray的大小将创建一个新的数组并删除原始数据。</li>
+<li>NumPy 数组中的元素都需要具有相同的数据类型，因此在存储器中将具有相同的大小。数组的元素如果也是数组（可以是 Python 的原生 array，也可以是 ndarray）的情况下，则构成了多维数组。</li>
+<li>NumPy 数组便于对大量数据进行高级数学和其他类型的操作。通常，这样的操作比使用Python的内置序列可能更有效和更少的代码执行。</li>
+</ul>
+<p>所以，Numpy 的核心是ndarray对象，这个对象封装了同质数据类型的n维数组。起名ndarray 的原因就是因为是 n-dimension-array 的简写。接下来本节所有的课程都是围绕着ndarray来讲的，理论知识较少，代码量较多，所以大家在学习的时候，多自己动动手，尝试自己去运行一下代码。<br><img src="https://yqfile.alicdn.com/2adb3c3be360db91b0c514d3f70f591eefec6f7a.jpeg" alt="_" title="_"></p>
+<p>不可不学Numpy，带你快速撸Numpy代码，（Python学习教程）一遍过<br><strong>创建ndarray</strong></p>
+<p>由python list创建<br>由numpy内置函数创建<br>访问、删除、增加ndarray中的元素</p>
+<p>这里主要是提供了一些访问、更改或增加ndarray中某一元素的基础方法。</p>
+<p>访问&amp;更改</p>
+<p>类似于访问python list中元素的方式，按照元素的index进行访问或更改。</p>
+<p><strong>删除</strong></p>
+<p>可使用np.delete(ndarray, elements, axis)函数进行删除操作。</p>
+<p>这里需要注意的是axis这个参数，在2维数据中，axis = 0表示选择行，axis = 1表示选择列，但不能机械的认为0就表示行，1就表示列，注意前提2维数据中。</p>
+<p>在三维数据中，axis = 0表示组，1表示行，2表示列。这是为什么呢？提示一下，三位数组的shape中组、行和列是怎样排序的？<br>所以，axis的赋值一定要考虑数组的shape。</p>
+<p>再有一点需要注意的是，如果你想让原数据保留删除后的结果，需要重新赋值一下才可以。</p>
+<p>增加</p>
+<p>往ndarray中增加元素的办法跟python list也很类似，常用的有两种：</p>
+<p>一种是添加（append），就是将新增的元素添加到ndarray的尾部<br>语法为：np.append(ndarray, elements, axis)<br>参数和delete函数一致，用法也一致，这里不再赘述<br>一种是插入（insert），可以让新增元素插入到指定位置<br>语法为：np.insert(ndarray, index, elements, axis)<br>参数中就多了一个index，指示的是插入新元素的位置。<br>这里值得注意的是，不论是append还是insert，在往多维数组中插入元素时，一定要注意对应axis上的shape要一致。再一个就是，和delete一样，如果你想要更改原数据，需要重新赋值。</p>
+<p>切片和筛选</p>
+<p>ndarray切片</p>
+<p>前面学了选择ndarray中的某个元素的方法，这里我们学习获取ndarray子集的方法——切片。</p>
+<p>对于切片大家并不陌生，在list里面我们也接触过切片，一维的ndarray切片与list无异。需要注意的是，就是理解2维及多维ndarray切片。</p>
+<p>2维矩阵切片<br>这里可以看出，我们筛选了a矩阵中前三列的所有行，这是如何实现的呢？</p>
+<p>切片的第一个元素:表示的是选择所有行，第二个元素:-1表示的是从第0列至最后一列（不包含），所以结果如上所示。</p>
+<p>再看一个例子：</p>
+<p>筛选的是第2-3行的所有列。</p>
+<p>一个常用的切片<br>以列的形式获取最后一列数据：</p>
+<p>以一维数组的形式获取最后一列数据：</p>
+<p>上面两种方法经常会用到，前者的shape为(4,1)，后者为(4,)。</p>
+<p>ndarray筛选</p>
+<p>选择ndarray的对角线<br>所用函数为np.diag(ndarray, k=N)，其中参数k的取值决定了按照哪一条对角线选择数据。</p>
+<p>默认k = 0，取主对角线；</p>
+<p>k = 1时，取主对角线上面1行的元素；</p>
+<p>k = -1时，取主对角线下面1行的元素。</p>
+<p>思考：这个函数只能选择主对角线上的元素，那如果想要获取副对角线上的元素呢？</p>
+<p>尝试自己搜索一下关键词numpy opposite diagonal寻找答案。</p>
+<p>不建议你直接点getting the opposite diagonal of a numpy array。</p>
+<p>提取ndarray中的唯一值<br>所用函数为np.unique(ndarray)，注意unique也可以添加参数axis来控制评判唯一值的轴方向，不好理解可以看示例：</p>
+<p>通过布尔运算筛选<br>这里在中括号中添加筛选条件，当该条件的结果为True时（即满足条件时），返回该值。</p>
+<p>这里需要注意的是，当输入多个筛选条件时，&amp;表示与，|表示或，~表示非。</p>
+<p>运算与排序</p>
+<p>ndarray运算</p>
+<p>集合运算<br>算术运算<br>我们可以通过+、-、*、/或np.add、np.substract、np.multiply 、np.divide来对两个矩阵进行元素级的加减乘除运算，因为是元素级的运算，所以两个矩阵的shape必须要一致或者是可广播(Broadcast)。</p>
+<p>这里所谓的可广播，就是指虽然A和B两个矩阵的shape不一致，但是A可以拆分为整数个与B具有相同shape的矩阵，这样在进行元素级别的运算时，就会先将A进行拆分，然后与B进行运算，结果再组合一起就可以。这里的A就是“可广播”矩阵。</p>
+<p>上面涉及到的乘法是元素对应相乘，也就是点乘，那矩阵的叉乘呢？可以了解下numpy.matmul函数。<br>ndarray排序</p>
+<p>我们使用np.sort()和ndarray.sort()来对ndarray进行排序。</p>
+<p>相同的是：</p>
+<p>二者都可以使用参数axis来决定依照哪个轴进行排序，axis = 0时按照列排序，axis = 1时按照行排序；</p>
+<p>不同的是：</p>
+<p>np.sort()不会更改原数组；ndarray.sort()会更改原数组。</p>
+<p>更多的Python学习教程会继续为大家更新！大家哪里有不清楚的地方可以留言或者私信！</p>
+
+                                                            </div>
+                                

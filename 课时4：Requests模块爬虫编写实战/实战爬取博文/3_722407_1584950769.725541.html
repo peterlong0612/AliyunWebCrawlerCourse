@@ -1,0 +1,188 @@
+7个Python小坑，给新手党的福利<br /><br />
+                                                                        
+<p>Python语言简单易用，但容易给新入门的朋友造成一些微妙的，难以捕捉的错误，稍不注意就入坑了。<br>因此，今天给大家总结一些易犯的小错误，让你轻松进行不踩坑的Python学习。</p>
+<p><strong>1、缩进，符号和空格不正确</strong></p>
+<p>写代码时大家会使用缩进、对齐、空格等，其目的是为了提高代码的可读性。<br>但在python语言中，许多功能都依赖于缩进。</p>
+<p>比如在创建一个新类时，该类中的所有内容都在声明下缩进，决策、循环还有其它结构语句也会出现类似的情况，</p>
+<p>如果你在代码执行时发现问题，可以查看一下是否使用了正确的缩进。</p>
+<p>来看看下面的例子，在使用IF语句时，请确保使用正确且合适的冒号和缩进，因为它们会导致语法和缩进错误。</p>
+<pre><code class="python">val = 500
+if val &gt; 100
+print("value is grater then 100")
+
+File "&lt;ipython-input-1-a271e37c300f&gt;", line 2
+    if val &gt; 100
+                ^
+SyntaxError: invalid syntax</code></pre>
+<p>在上面的代码当中，出现了两处错误：if语句后面的：缺失；下一行没有进行正确的缩进，执行代码出错。</p>
+<pre><code class="python">val = 500
+if val &gt; 100:
+ print("value is grater then 100")
+
+value is grater then 100</code></pre>
+<p>当你更正上述代码中的两个问题后，你会发现整段代码能够很好的运行。</p>
+<p><strong>2、错误使用类变量</strong></p>
+<p>class A(object):x = 1class B(A):passclass C(A):passprint( A.x, B.x, C.x)1 1 1<br>这里输出的值都是1，然后我们试着来改变一下A.x和B.x的值看看有什么变化。</p>
+<pre><code class="python">B.x = 2
+print (A.x, B.x, C.x)
+A.x = 3
+print (A.x, B.x, C.x)
+1 2 1
+3 2 3</code></pre>
+<p>我们只改变了A.x,为什么C.x改变呢？</p>
+<p>这里需要简单了解一下python的命名空间。</p>
+<p>python中，命名空间是名字到对象映射的结合，不同命名空间中的名字是没有关联的，这种映射的实现有点类似于python中的字典。</p>
+<p>当你名字访问一个对象的属性时，先从对象的命名空间寻找。如果找到了这个属性，就返回这个属性的值；如果没有找到的话，则从类的命名空间中寻找，找到了就返回这个属性的值，找不到则抛出异常。</p>
+<p>在Python中，类变量在内部作为字典处理，并遵循通常称为方法解析顺序（MRO）的方法。</p>
+<p>MRO：Method Resolution Order 方法解析顺序，Python支持多继承，该方法用于解决父类存在同名函数的时存在的二义性问题。</p>
+<p>因此在上面的代码中，由于x在对象的命名空间中找不到该属性C，因此将在类中查找它。换句话说，C没有自己的x属性，独立于A。因此，引用C.x实际上是指A.x。</p>
+<p><strong>3、误解python范围规则</strong></p>
+<p>如果你不了解python的范围规则，那么你很容易犯错误，这是因为Python使用一种独有的范围规则来确定变量范围。<br>python范围解析是基于LEGB规则，以下是Python范围规则的概述：</p>
+<ul>
+<li>·L -代表Local。它包含在函数内指定的（标识符/变量）名称（使用def或lambda），而不是使用global关键字声明。</li>
+<li>·E -代表Enclosing function locals。它包含来自任何/所有封闭函数的本地范围的名称（例如，使用def或lambda）。</li>
+<li>·G -指全球实体。它包括在模块文件的顶层运行或使用global关键字定义的名称。</li>
+<li>·B -指内置插件。它跨越预先指定为内置名称的名称，如打印，输入，打开等。</li>
+</ul>
+<p>LEGB规则指定名称空间的以下顺序，用于搜索名称：</p>
+<pre><code class="python">Local - &gt; Enclosed - &gt; Global - &gt; Built-in</code></pre>
+<p>考虑以下的例子：</p>
+<pre><code class="python">x = 10
+def foo():
+  x += 1
+ print(x)
+foo()
+#Python学习交流QQ群：857662006 
+UnboundLocalError Traceback (most recent call last):
+&lt;ipython-input-26-234e54482865&gt; in &lt;module&gt;
+&lt;ipython-input-26-234e54482865&gt; in foo()
+UnboundLocalError: local variable 'x' referenced before assignment</code></pre>
+<p>发生上述错误的原因是，对作用域中的变量进行赋值时，Python会自动将该变量视为该作用域的本地变量，并在外部作用域中隐藏任何类似命名的变量。<br>因此，许多人在代码提示出错并显示需要在函数中添加赋值语句而感到不解。<br>考虑一个在使用列表时遇到的例子：</p>
+<pre><code class="python">lst = [1, 2, 3]
+def foo1():
+  lst.append(5)  
+foo1()
+lst
+[1, 2, 3, 5]
+lst = [1, 2, 3]
+def foo2():
+   lst += [5]      
+foo2()
+
+UnboundLocalError  Traceback (most recent call last):
+&lt;ipython-input-30-579469eed71a&gt; in &lt;module&gt;  
+&lt;ipython-input-30-579469eed71a&gt; in foo2()
+UnboundLocalError: local variable 'lst' referenced before assignment</code></pre>
+<p>为什么foo2出错了但是foo1运行良好？</p>
+<p>答案在前面就已经有所提示，在这个例子当中foo1（）做一个分配到lst，而在foo2（）当中lst += [5]其实只是lst = lst + [5]的简写，我们希望分配一个值给lst，但是分配的值lst是基于lst自身，但其尚未定义。</p>
+<p><strong>4、python闭包变量绑定</strong></p>
+<p>python的闭包变量问题也是新手们容易混淆的一个点，来看看下面的例子：</p>
+<pre><code class="python">def create_multipliers():
+   return [lambda x : i * x for i in range(5)]
+for multiplier in create_multipliers():
+    print (multiplier(2))
+8
+8
+8
+8
+8</code></pre>
+<p>为什么结果是88888，和我所想的02468不一样呢？</p>
+<p>这是由于Python的迟绑定(late binding)机制，闭包中内部函数的值只有在被调用时才会进行查询。</p>
+<p>因此create_multipliers函数返回的lambda函数被调用时，会在附近的作用域中查询变量i的值，而在create_multipliers生成返回数组之后，整数i的值是4，不会再改变，因此返回数组中每个匿名函数实际上都是：lambda x: 4*x。、</p>
+<p>解决办法是将临时值也保存在匿名函数的作用域内，在声明匿名函数时就查询变量的值。<br>了解原理之后，让我们来改一改代码，surprise！</p>
+<pre><code class="python">def create_multipliers():
+     return [lambda x, i=i : i * x for i in range(5)]
+for multiplier in create_multipliers():
+     print (multiplier(2))
+0
+2
+4
+6
+8</code></pre>
+<p><strong>5、名称与Python标准库模块发生冲突</strong></p>
+<p>Python拥有大量的库模块，开箱即用。但是，如果您遇到一个模块的名称与Python附带的标准库中具有相同名称的模块之间的名称冲突，则可能会出现问题。</p>
+<p>例如导入另一个库，而这个库又会尝试导入模块的Python标准库版本，但由于你有一个同名的模块，另一个包会错误地导入你的版本而不是Python标准库。</p>
+<p>因此，应该注意避免使用与Python标准库模块中相同的名称，并且更改包中的模块名称比提交Python Enhancement Proposal（PEP）以请求名称更改更容易。</p>
+<p><strong>6、is和==/=和==</strong></p>
+<p>Python中有很多运算符，例如is，=，==这三个，许多刚刚入门的新手会误解这三个运算符的意义和用法，以致于代码出错。</p>
+<p>在 Python 中会用到对象之间比较，可以用 ==，也可以用 is，但对对象比较判断的内容并不相同，区别在哪里？</p>
+<p>·is 比较两个对象的 id 值是否相等，是否指向同一个内存地址，== 比较的是两个对象的内容是否相等，值是否相等；</p>
+<pre><code class="python">a = ["Python"]
+b = a
+b is a
+True
+id(a)
+2222222
+id(b)
+2222222
+b == a
+True</code></pre>
+<p>可以发现上面的例子当中b和a的内存地址是相同的，它们指向同一块内存，因而 is 和 == 的结果都为True,这是因为直接赋值都是赋值的引用。如果新建对象之后，b 和 a 指向了不同的内存，那么 b is a 的结果为False，而 b==a的结果为True。</p>
+<p>·小整数对象[-5,256]在全局解释器范围内被放入缓存供重复使用，例如：</p>
+<pre><code class="python">a = 1
+b = 1
+a is b
+True
+a == b
+True
+a = 257
+b = 257
+a is b
+False</code></pre>
+<p>Python仅仅对比较小的整数对象进行缓存（范围为范围[-5, 256]）缓存起来，而并非是所有整数对象。需要注意的是，这仅仅是在命令行中执行，而在Pycharm或者保存为文件执行，结果是不一样的，这是因为解释器做了一部分优化。</p>
+<p>=和==的含义不同：</p>
+<p>=代表的含义是赋值，将某一数值赋给某个变量，比如a=3，将3这个数值赋予给a。<br>==是判断是否相等，返回True或False，比如1==1。他们是相等的，那么就返回true。1==2，他们是不相等的，那么就返回false。<br>例子：</p>
+<pre><code class="python">a = [1,2]
+b = [1,2]
+c = a
+a is b
+False
+a is c
+true
+a == b
+true</code></pre>
+<p><strong>7、滥用__init__</strong></p>
+<p>__init__方法在Python中用作构造函数，当Python将内存分配给新的类对象时，它会自动被调用。<br>首先，__init__并不相当于C#中的构造函数，在执行它的时候，实例已经构造出来。</p>
+<pre><code class="python">#小编创建了一个Python学习交流QQ群：857662006 
+class A(object):
+   def __init__(self,name):
+       self.name=name
+   def getName(self):
+       return 'A '+self.name
+执行代码：
+a=A('hello')</code></pre>
+<p>可以理解为：</p>
+<pre><code class="python">a=object.__new__(A)
+A.__init__(a,'hello')</code></pre>
+<p>即__init__作用是初始化已实例化后的对象。</p>
+<p>其次，子类可以不重写__init__，实例化子类时，会自动调用超类中已定义的__init__。</p>
+<pre><code class="python">class B(A):
+    def getName(self):
+        return 'B '+self.name
+ 
+if __name__=='__main__':
+    b=B('hello')
+    print (b.getName())</code></pre>
+<p>但如果重写了__init__，实例化子类时，则不会隐式的再去调用超类中已定义的__init__。</p>
+<pre><code class="python">class C(A):
+    def __init__(self):
+        pass
+    def getName(self):
+        return 'C  '+self.name
+ 
+if __name__=='__main__':
+    c=C()
+    print (c.getName())</code></pre>
+<p>此时执行代码则会报"AttributeError: 'C' object has noattribute 'name'”错误，所以如果重写了__init__，为了能使用或扩展超类中的行为，最好显式的调用超类的__init__方法。</p>
+<pre><code class="python">class C(A):
+    def __init__(self,name):
+        super(C,self).__init__(name)
+    def getName(self):
+        return 'C  '+self.name
+
+if __name__=='__main__':
+    c=C('hello')  
+    print (c.getName())</code></pre>
+
+                                                            </div>
+                                

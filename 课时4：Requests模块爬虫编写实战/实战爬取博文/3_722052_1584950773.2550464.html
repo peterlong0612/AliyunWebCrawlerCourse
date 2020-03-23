@@ -1,0 +1,117 @@
+有Java基础的程序员，是如何看待Python这位少女的？<br /><br />
+                                                                        
+<p>随着人工智能的火热，Python作为这块领域中的佼佼者，也得到了迅猛的发展。作为一门强类型的动态脚本语言，Python与JavaScript非常相似，无论是语法思维上还是可用的基础工具（内置API）上，对于写惯了JavaScript的我们来说，Python非常的友好，友好在哪呢？我们一起来看看吧。</p>
+<p>由于我们都是有JavaScript基础了，所以学习Python的方式得做一些小改变，不需要去看文档学习API，那样其实蛮累的，毕竟脱离了生产的学习API，就犹如听着昏昏欲睡，毫无感情色彩的四六级听力，嚼着一段段生搬硬套硬凑生词的阅读理解，你很难真正的听懂、读懂它。（有幸在车站跟外国人交流过，他们说的话听起来真的很优美，很灵动，这跟一直是第一声的四六级完全不同，好吧，扯远了）</p>
+<p>学Python，我的理解 —— 就像学JQuery，学会一个$(id class tag)，理解它比原生JS对于DOM操作的简化就够了，其他的五花八门的API，你在生产环境下用上一遍，自然而然就会了。</p>
+<p>这里我们也是一样，不学习它的API，我们用Python来解决问题，解着解着，你自然也就会了，而且可以让你的头发少掉那么几根。= =</p>
+<p><img src="https://yqfile.alicdn.com/73f186079af73f13088dd67d1d0b135dbdc6db2c.png" alt="screenshot" title="screenshot"></p>
+<p>我们遇到的第一个问题是 —— 抽奖。</p>
+<p>用JavaScript写抽奖你肯定信手拈来，呼啦啦看着那个大转盘咕噜咕噜就是一顿猛操作。这里我们只取其中最重要的一部分，也就是摇出幸运者的逻辑。我们可以把它抽象成下面这样：</p>
+<p>1、抽奖箱里的号码为员工号码，我们看成一个数组，假设这时候的员工号码为1~100号。</p>
+<p>2、抽奖到的那位不能再继续参与抽奖。</p>
+<p>3、假设我们要抽取若干位幸运者（比如5位幸运者）</p>
+<p>这时候我们想：先建一个数组来装幸运者，接着随机一个从1-100号的数字，并且判定一下这个随机出来的数字是否在幸运者数组中，如果没有就加进去，有就重新随机。</p>
+<p>我们先来看一下我们熟悉的JavaScript，基本上你可以发现有条不紊的按照我们的思路进行着。</p>
+<p>const randomNums_0 = (a, b, n) =&gt; {</p>
+<pre><code>
+//    建一个数组
+let res = [];
+//    生成 a~b 的随机号码
+const createRandom = (a, b) =&gt; Math.floor(Math.random() * (b - a) + a);
+while(n) {
+    let val = createRandom(a, b);
+    if(res.indexOf(val) === -1) {    //    如果这个随机的号码在幸运者的队列中不存在
+        res.push(val);    //    则将这个号码添加进去
+        n --;        //    这里的n是幸运者的人数，当队列中多了一个幸运者，n就减一
+    }                //    否则重新生成随机数
+}
+return res;</code></pre>
+<p>}<br>console.log(randomNums_0(1, 100, 5));<br>这时做过了一遍之后，再返回来看看Python版。（这里的Python是Python3.7，对于Python2的语法异同（语法不兼容其实不少，最常见的比如Python2的print <strong><em>与Python3的 print(</em></strong>)。这里就不说了，只说Python3。）</p>
+<pre><code class="js"># 简单抽奖 —— 生成n个输入范围在a ~ b内的不同随机整数。
+# 难度 
+# 函数接收3个数字，分别为a, b, n。
+def _20191020():
+ # the first solution
+ def randomNums_0 (a, b, n):
+ res = []
+ while n:
+ num = math.floor(random.random() * (b - a) + a)
+ if num not in res:
+ res.append(num)
+ n -= 1
+ return res
+ 
+ print(randomNums_0(1, 100, 5))
+</code></pre>
+<p>基本的套路其实一模一样，只不过稍微语法不同：</p>
+<p>1、 JavaScript的函数定义是通过function，或者通过箭头表达式。而Python则是通过def。def其实就是定义的意思，define嘛。</p>
+<p>// JavaScript<br>function fn () { ... }<br>const fn = argus =&gt; { ... }</p>
+<h1>Python</h1>
+<p>def fn ():<br>python的函数没有大括号包裹，而是通过"："来做判定。</p>
+<p>2、 我们的判断数组是否包含某个成员，我们的初步思路就是判断它的索引是不是大于-1，这里Python做得更好，它直接就是：</p>
+<p>if num not in res:<br>你在其他语言上很难（除了SQL）看到如此语义化的代码，简直就是一句赤裸裸的英文句子，这也是我向往的终极代码编程方式 —— 代码就是很直白的英文句子（当然也可以中文）。</p>
+<p>3、 类似于数组的push在python中是append，n - - 在python中没有，python只能是n -= 1等这些小改动，对于我们来说其实都不能说是负担。</p>
+<p>4、 JavaScript最大的特点就是你几乎开箱即用，很多功能都内置了，而Python其实也是，只不过没有全部放在名称空间里（你可以理解成全局作用域），比如数学的math，随机数的random，正则的re。它们都是需要import进来的。比如下面这样：</p>
+<p>import math<br>import numpy<br>import re<br>import random<br>from functools import reduce<br>5、 你有没发现这些import跟JavaScript非常相似，甚至关键词都一样的，是的，这里你几乎可以用JavaScript的模块化思想来类比，你可以很容易理解并掌握它。</p>
+<p>好了，虽说仅仅只是简单的一个问题解决过程，但你可以掌握不少这方面的语法与思想了吧。</p>
+<p>这时候对于这一个问题的解决思路我抱着一丝疑惑，按照这样的方式，是不是存在着新出的随机号码可能已经存在于幸运者队列中了，假如这时候我要抽取的是50位呢？是不是无形中冲突的概率大大的增加？假如是抽99位（当然这时候就变成抽1位了），那是不是新出的随机数一直迎面撞到数组里？然后就一直随机一直撞，想一下都累。有木有新的方式来解决呢？这是肯定的。</p>
+<p>这时候我们做的就是先生成一个全部参与者号码组成的数组，先随机抽取出一位，这时候数组就将这一位移除，接着继续抽取下一位，值得指定人数的幸运者选出即停止。</p>
+<p>看看下面的代码：</p>
+<p>// the second solution —— 利用数组机制<br>const randomNums = (a, b, n) =&gt; {</p>
+<pre><code>let arrList = Array.from({length: b - a}, (item, index) =&gt; index + a),
+    res = [];
+while(n --) {
+    let i = Math.floor(Math.random() * arrList.length);
+    res.push(arrList[i]);
+    arrList.splice(i, 1);
+}
+return res;</code></pre>
+<p>}<br>return randomNums(1, 100, 5);<br>在看一下Python的代码：</p>
+<h1>the second solution</h1>
+<p>def randomNums(a, b, n):<br> all = list(range(a, b))<br> res = []<br> while n:<br> index = math.floor(random.random() * len(all))<br> res.append(all[index])<br> del all[index]<br> n -= 1<br> return res<br>return randomNums(1, 100, 5)<br>解决思路的话其实没啥差别。只不过这里你可以发现：</p>
+<p>1、 我们数组的删除某些成员用的是splice，其实还不是那么的直观，看看Python</p>
+<p>del all[index]<br>直接就是一句delete，删除，看着就有种莫名的爽。</p>
+<p>2、 Python生成list也非常简单，比之JavaScript更为简洁。</p>
+<p>// JavaScript<br>let arrList = Array.from({length: b - a}, (item, index) =&gt; index + a)</p>
+<h1>Python</h1>
+<p>arrList = list(range(a, b))<br>接下来我们遇到的第二个问题是 —— Fizz Buzz。</p>
+<p>来看一下问题的描述：</p>
+<h1>Fizz Buzz</h1>
+<h1>难度</h1>
+<h1>给定一个 数字 作为输入值, 打印出从 1 到给定数字的所有整数。</h1>
+<h1>但是，当整数可以被 2 整除时，打印出“Fizz”; 当它可以被3整除时，打印出“Buzz”;</h1>
+<h1>为了方便，可以将结果先合并成一个数组一起输出</h1>
+<p>这个采用JavaScript解决的话，我们几乎可以不假思索的写出：</p>
+<p>const fizzBuzz = num =&gt; {</p>
+<pre><code>let arr = Array.from({length: num}, (item, index) =&gt; index + 1); // 先生成一个从1至输入值的数组
+
+return arr.map(item =&gt; item % 2 === 0 ? 'Fizz' : item % 3 === 0 ? 'Buzz' : item); // 做一次map映射</code></pre>
+<p>}<br>console.log(fizzBuzz(20));<br>假如采用的是python呢？看看哈：</p>
+<p>def _20191021():</p>
+<p>def mapRes (item):<br> return 'Fizz' if item % 2 == 0 else 'Buzz' if item % 3 == 0 else item<br> def fizzBuzz(n):<br> all = list(range(1, n + 1))<br> return list(map(mapRes, all))<br> return fizzBuzz(20)<br>看起来好像也很相似，也有map，也是将一个函数作为参数传进map，是不是很cool？</p>
+<p>1、 Python也有map，而且用法几乎和我们JavaScript一模一样，只不过它没有JavaScript这样的非常典型的链式调用。而且Python中的map对应的回调函数中，也没有index的值。另外就是map直接存在于名称空间，无需引入任何的包。</p>
+<p>// JavaScript<br>let arr = [1,2,3,4]<br>arr.map(item =&gt; item ** 2);</p>
+<h1>Python</h1>
+<p>arr = [1,2,3,4]<br>def fn (item):</p>
+<pre><code>return item ** 2</code></pre>
+<p>map(fn, arr)<br>2、 看到上面的两段代码，你是不是也发现了Python的注释？Python里的注释跟很多的配置文件（比如nginx）一样用“#”作为注释的关键词，当然它还有" “、”’ '"这样的注释，可以自个去看看吧。</p>
+<p>3、 看到上面的JavaScript代码好像用到了三元运算符，而Python中怎么不写呢？其实不是不想写，是Python中的三元是这样的，反正看起来不像三元运算。</p>
+<p>res = a if fn else b # 就是说 res 如果满足fn 那就是a，否则就是b<br>当然了，你完全可以（尽管你可能在代码评审时被各种爆锤）</p>
+<p>res = a if fn1 else b if fn2 else c if fn3 else d if fn4 else e ....<br>4、 Python再怎样，毕竟也是一门强类型的语言，对于类型检查也是非常注重的哈，你没办法将一个数字型的与一个字符串型的数据强行合并。</p>
+<p>比如我们在JavaScript中很常见的：</p>
+<pre><code>let a = 1,
+    b = 'dorsey';
+console.log(a + b)</code></pre>
+<p>请相信我，你这在Python中是会报错的。</p>
+<p>所以假如你有这样的需要，那么你可以这样：</p>
+<pre><code>a = 1
+b = 'dorsey'
+print(str(a) + b)</code></pre>
+<p>其实就是做一步在强类型语言中非常常见的类型强制转换。不过最好还是在定义时更规范更有前瞻性的去选择类型。</p>
+<p>学习JavaScript时，你是不是也会时不时的去浏览器将各大类型的内置对象（比如Object，Array，String…）打印一下，看看它们的原型，看看是否增加了什么新东西？</p>
+<p>而Python呢，其实相较于JavaScript那些方法或对象，要更加复杂，内置的模块池也更加的庞大。你可以看看：<br><img src="https://yqfile.alicdn.com/5360d6e93950a58eae5927b9556f327cecde2751.jpeg" alt="3" title="3"></p>
+<p>光一个最外层的文件目录就有这么多了，还得说可能有目录套目录等等，比如你看到__XXX__这样的变量，基本就是一个内部的对象了。</p>
+<p>当然了，正如开头所说，这样一个个API去试是很累的方式，但不代表我们不可以全部浏览一遍，对吧？</p>
+
+                                                            </div>
+                                

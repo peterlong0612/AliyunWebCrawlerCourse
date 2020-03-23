@@ -1,0 +1,47 @@
+Python：一图看懂Python2还是Python3的编码<br /><br />
+                                                                        
+<p>无论是Python2还是Python3，都使用unicode作为内存编码，简称内码。保存在python解释器内存中的文本，输出到屏幕、编辑器，或者保存成文件的时候，都要将内码转换成utf8或者gbk等编码格式；同样，python解释器从输入设备接收文本，或者从文件读取文本的时候，都要将utf8或者gbk等编码转换成unicode编码格式。因此，无论是Python2还是Python3，想要在unicode、utf8、gbk等编码格式之间转换的话，下图是通用的：</p>
+<p><img src="https://yqfile.alicdn.com/05a72a84d42fd86f0046e65328e886379e4206b2.png" alt="py" title="py"></p>
+<p>我们之所以会产生困惑，是因为py2和Python3给这些编码格式指定了令人困惑的名字。Python2的字符串有两种类型：unicode类型和str类型。Python2的unicode类型就是unicode编码，Python2的str类型泛指除unicode编码之外的所有编码，包括ascii编码、utf8编码、gbk编码、cp936编码等。Python3的字符串也有两种类型：bytes类型和str类型。Python3的str类型就是unicode编码，Python3的bytes类型泛指除unicode编码之外的所有编码，包括ascii编码、utf8编码、gbk编码、cp936编码等。同样是str类型，在Python2和Python3中完全颠倒了！下图稍微补充了一点内容，更有助于理解编码问题。</p>
+<p>接下来，我们实战演练一下。</p>
+<blockquote><blockquote><blockquote><p>s = 'abc天圆地方'<br>type(s)<br><br>len(s)</p></blockquote></blockquote></blockquote>
+<p>7</p>
+<blockquote><blockquote><blockquote><p>s</p></blockquote></blockquote></blockquote>
+<p>'abc天圆地方'</p>
+<blockquote><blockquote><blockquote><p>print(s)</p></blockquote></blockquote></blockquote>
+<p>abc天圆地方</p>
+<blockquote><blockquote><blockquote><p>s.encode('unicode-escape')</p></blockquote></blockquote></blockquote>
+<p>b'abc\u5929\u5706\u5730\u65b9'<br>不管是否在字符串前面加了u，只要不在字符串前面使用b，在IDLE中定义的字符串都是unicode编码，也就是py3的，其长度就是字符数量，不是字节数。我们把unicode字符串’abc天圆地方’转成utf8编码：</p>
+<blockquote><blockquote><blockquote><p>s_utf8 = s.encode('utf8')<br>type(s_utf8)</p></blockquote></blockquote></blockquote>
+<p></p>
+<blockquote><blockquote><blockquote><p>len(s_utf8)</p></blockquote></blockquote></blockquote>
+<p>15</p>
+<blockquote><blockquote><blockquote><p>s_utf8</p></blockquote></blockquote></blockquote>
+<p>b'abc\xe5\xa4\xa9\xe5\x9c\x86\xe5\x9c\xb0\xe6\x96\xb9'</p>
+<blockquote><blockquote><blockquote><p>print(s_utf8)</p></blockquote></blockquote></blockquote>
+<p>b'abc\xe5\xa4\xa9\xe5\x9c\x86\xe5\x9c\xb0\xe6\x96\xb9'</p>
+<blockquote><blockquote><blockquote><p>s_utf8.decode('utf8')</p></blockquote></blockquote></blockquote>
+<p>'abc天圆地方'<br>utf8编码就是bytes类型（字节码），长度就是字节数量。我们把unicode字符串’abc天圆地方’转成gbk编码：</p>
+<blockquote><blockquote><blockquote><p>s_gbk= s.encode('gbk')<br>type(s_gbk)</p></blockquote></blockquote></blockquote>
+<p></p>
+<blockquote><blockquote><blockquote><p>len(s_gbk)</p></blockquote></blockquote></blockquote>
+<p>11</p>
+<blockquote><blockquote><blockquote><p>s_gbk</p></blockquote></blockquote></blockquote>
+<p>b'abc\xcc\xec\xd4\xb2\xb5\xd8\xb7\xbd'</p>
+<blockquote><blockquote><blockquote><p>print(s_gbk)</p></blockquote></blockquote></blockquote>
+<p>b'abc\xcc\xec\xd4\xb2\xb5\xd8\xb7\xbd'</p>
+<blockquote><blockquote><blockquote><p>s_gbk.decode('s_gbk')</p></blockquote></blockquote></blockquote>
+<p>'abc天圆地方'<br>gbk编码也是bytes类型（字节码），长度也是字节数量。我们再来看看，不同编码的字节码能否连接：</p>
+<blockquote><blockquote><blockquote><p>ss = s_utf8 + s_gbk<br>ss</p></blockquote></blockquote></blockquote>
+<p>b'abc\xe5\xa4\xa9\xe5\x9c\x86\xe5\x9c\xb0\xe6\x96\xb9abc\xcc\xec\xd4\xb2\xb5\xd8\xb7\xbd'</p>
+<blockquote><blockquote><blockquote><p>ss.decode('utf8')</p></blockquote></blockquote></blockquote>
+<p>Traceback (most recent call last):<br> File "", line 1, in <br> ss.decode('utf8')<br>UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcc in position 18: invalid continuation byte</p>
+<blockquote><blockquote><blockquote><p>ss.decode('gbk')</p></blockquote></blockquote></blockquote>
+<p>'abc澶╁渾鍦版柟abc天圆地方'</p>
+<blockquote><blockquote><blockquote><p>ss.decode('utf8', 'ignore')</p></blockquote></blockquote></blockquote>
+<p>'abc天圆地方abcԲط'</p>
+<blockquote><blockquote><blockquote><p>ss.decode('gbk', 'ignore')</p></blockquote></blockquote></blockquote>
+<p>'abc澶╁渾鍦版柟abc天圆地方'<br>看以看出，不同编码的字节码可以连接，但一般不能解码成unicode（字符串），除非使用ignore参数。</p>
+
+                                                            </div>
+                                

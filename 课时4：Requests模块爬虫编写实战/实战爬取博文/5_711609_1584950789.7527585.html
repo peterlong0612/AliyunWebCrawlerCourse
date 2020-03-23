@@ -1,0 +1,132 @@
+python使用mysql的一些坑<br /><br />
+                                                                        
+<p><b> <span style="color:#000000;">注意：如果你用的是python3.x，直接去看第四个问题<span></span></span></b></p>
+<h2><b>遇到的第一个问题</b></h2>
+<ul>
+<li>
+<p>正常来说直接执行pip安装，就是可以的，但是MySQL-python偏偏比较独特</p>
+<pre><code class="shell">pip install MySQL-python</code></pre>
+</li>
+<li>
+<p>报错</p>
+<pre><code class="shell">_mysql.c:44:10: fatal error: 'my_config.h' file not found
+    #include "my_config.h"
+             ^~~~~~~~~~~~~
+    1 error generated.
+    error: command 'cc' failed with exit status 1</code></pre>
+</li>
+</ul>
+<h3><b>解决第一个问题</b></h3>
+<ul>
+<li>
+<p>执行<code>brew install mysql-connector-c</code></p>
+<pre><code class="shell">brew install mysql-connector-c</code></pre>
+</li>
+<li>
+<b>如果这一步直接完成，那就可以继续<code>pip install MySQL-python</code>了</b>，应该会成功</li>
+<li>但是我在这一步执行失败了<br><br>
+</li>
+</ul>
+<h2><b>遇到第二个问题</b></h2>
+<ul><li>
+<p><code>brew install mysql-connector-c</code>报错</p>
+<pre><code class="shell">Error: Cannot install mysql-connector-c because conflicting formulae are installed.
+  mysql: because both install MySQL client libraries
+
+Please `brew unlink mysql` before continuing.</code></pre>
+</li></ul>
+<h3><b>解决第二个问题</b></h3>
+<ul>
+<li>按照报错的提示，执行<code>brew unlink mysql</code>
+</li>
+<li>没有发生什么意外，执行完毕，继续执行<code>brew install mysql-connector-c</code>
+</li>
+<li>'mysql-connector-c'安装成功</li>
+<li>执行<code>brew link --overwrite mysql</code>，重新连接mysql（这一步我没有做）</li>
+<li>然后再执行<code>pip install MySQL-python</code>，如果成功了就搞定了</li>
+<li>神奇的是，我在这一步又失败了<br><br>
+</li>
+</ul>
+<h2><b>遇到的第三个问题</b></h2>
+<ul><li>
+<p>上面的步骤走完以后，执行<code>pip install MySQL-python</code>，报错</p>
+<pre><code class="shell">Collecting mysql
+  Downloading https://files.pythonhosted.org/packages/06/ef/c4efbf2a51fb46aba9be03a973638d9539c9ca10a5259b2cbb1a66133b2e/mysql-0.0.1.tar.gz
+Collecting MySQL-python (from mysql)
+  Using cached https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/MySQL-python-1.2.5.zip
+    Complete output from command python setup.py egg_info:
+    Traceback (most recent call last):
+      File "&lt;string&gt;", line 1, in &lt;module&gt;
+      File "/private/var/folders/zn/t8xxx4m149s9jqp1810ndrz80000gn/T/pip-install-oHMKPE/MySQL-python/setup.py", line 17, in &lt;module&gt;
+metadata, options = get_config()
+      File "setup_posix.py", line 53, in get_config
+libraries = [ dequote(i[2:]) for i in libs if i.startswith(compiler_flag("l")) ]
+      File "setup_posix.py", line 8, in dequote
+if s[0] in "\"'" and s[0] == s[-1]:
+    IndexError: string index out of range</code></pre>
+</li></ul>
+<h3><b>解决第三个问题</b></h3>
+<ul>
+<li>修改mysql的配置文件<code>mysql_config</code>，<strong>修改前记得cp一下</strong>  <br>  执行<code>mysql_config</code>，查看一下路径</li>
+<li>
+<p>打开文件<code>vim mysql_config</code>，找到<code>libs="$libs -l "</code>，改为<code>libs="$libs -lmysqlclient -lssl -lcrypto "</code></p>
+<pre><code class="shell">libs="-L$pkglibdir"
+# libs="$libs -l "                              # 原来的
+libs="$libs -lmysqlclient -lssl -lcrypto "      # 更改后的
+embedded_libs="-L$pkglibdir"
+embedded_libs="$embedded_libs -l "</code></pre>
+</li>
+<li>再来一遍<code>pip install MySQL-python</code>
+</li>
+<li>终于成功了！可喜可贺！可喜可贺！</li>
+<li>小心翼翼的试一下，<code>import MySQLdb</code>，真的成功了<br><br>
+</li>
+</ul>
+<h2><b>发现第四个问题</b></h2>
+<ul>
+<li>开始使用的时候，发现自己用的是<code>python2.x</code>的环境，换成<code>python3.x</code>继续用</li>
+<li>在<code>import MySQLdb</code>的时候又出问题了，<code>ModuleNotFoundError: No module named 'MySQLdb'</code>
+</li>
+<li>
+<p>尝试使用<code>pip3 install MySQL-python</code>再安装一次，报错</p>
+<pre><code class="shell">Collecting MySQL-python
+  Using cached https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/MySQL-python-1.2.5.zip
+    Complete output from command python setup.py egg_info:
+    Traceback (most recent call last):
+      File "&lt;string&gt;", line 1, in &lt;module&gt;
+      File "/private/var/folders/07/v8slhf9x5zsbbd8_9cd5ztnh0000gp/T/pip-install-oh_74ez5/MySQL-python/setup.py", line 13, in &lt;module&gt;
+from setup_posix import get_config
+      File "/private/var/folders/07/v8slhf9x5zsbbd8_9cd5ztnh0000gp/T/pip-install-oh_74ez5/MySQL-python/setup_posix.py", line 2, in &lt;module&gt;
+from ConfigParser import SafeConfigParser
+    ModuleNotFoundError: No module named 'ConfigParser'
+
+    ----------------------------------------
+Command "python setup.py egg_info" failed with error code 1 in /private/var/folders/07/v8slhf9x5zsbbd8_9cd5ztnh0000gp/T/pip-install-oh_74ez5/MySQL-python/</code></pre>
+</li>
+</ul>
+<h3><b>解决第四个问题</b></h3>
+<ul><li>查到了原因，感到一阵阵的无语</li></ul>
+<blockquote><p>In Python 3, ConfigParser has been renamed to configparser for PEP 8 compliance. It looks like the package you are installing does not support Python 3.<br>  在Python3中，ConfigParser为了符合PEP8规范，已重命名为configparser。看起来你正在安装的软件包不支持Python3。</p></blockquote>
+<ul>
+<li>因为不支持python3，建议使用<code>pip install pymysql</code>，安装也没那么多套路</li>
+<li>
+<p>其实也找到了解决方案<strong>（没有测试，我也不知道对不对，单纯的记录一下）</strong></p>
+<ul>
+<li>
+<p>方法一, 修改six模块为</p>
+<pre><code class="python">try:
+    import configparser
+except:
+    from six.moves import configparser</code></pre>
+</li>
+<li>
+<p>方法二</p>
+<pre><code class="shell">cp /usr/local/lib/python3.7/configparser.py /usr/local/lib/python3.7/ConfigParser.py</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.wxy.email%2F2019%2F06%2F26%2FMySQL-python%2F" target="_blank" data-url="https://www.wxy.email/2019/06/26/MySQL-python/">时光不写博客-_mysql.c:44:10:fatal error:'my_config.h'...</a></p>
+
+                                                            </div>
+                                

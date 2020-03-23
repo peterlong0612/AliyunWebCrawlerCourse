@@ -1,0 +1,125 @@
+Python 多版本管理利器 pythonbrew<br /><br />
+                                                                        
+<p>在$HOME目录中管理python安装</p>
+<p>简介</p>
+<p>pythonbrew是受 perlbrew 和 rvm 启发，在用户的$HOME目录中进行python构建和安装自动化的项目。</p>
+<p>另一衍生版本 ： pythonz 。</p>
+<p>安装</p>
+<p>建议使用如下语句下载安装pythonbrew:</p>
+<p>$ curl -kL <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Fxrl.us%2Fpythonbrewinstall" target="_blank" data-url="http://xrl.us/pythonbrewinstall">http://xrl.us/pythonbrewinstall</a> | bash</p>
+<p>pythonbrew就会安装到 ~/.pythonbrew 。</p>
+<p>然后在您的 ~/.bashrc 文件追加下面这一行:</p>
+<p>[[ -s $HOME/.pythonbrew/etc/bashrc ]] &amp;&amp; source $HOME/.pythonbrew/etc/bashrc</p>
+<p>注：mac上没有.bashrc这一文件，用以下方法</p>
+<ol><li>启动终端Terminal2. 进入当前用户的home目录 输入cd ~3. 创建.bash_profile 输入touch .bash_profile4.编辑.bash_profile文件</li></ol>
+<p>加入 [[ -s $HOME/.pythonbrew/etc/bashrc ]] &amp;&amp; source $HOME/.pythonbrew/etc/bashrc</p>
+<ol><li>保存文件，关闭.bash_profile6. 更新刚配置的环境变量 输入source .bash_profile</li></ol>
+<p>设置PYTHONBREW_ROOT环境变量可以pythonbrew安装到指定目录:</p>
+<p>$ export PYTHONBREW_ROOT=/path/to/pythonbrew</p>
+<p>$ curl -kLO <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Fxrl.us%2Fpythonbrewinstall" target="_blank" data-url="http://xrl.us/pythonbrewinstall">http://xrl.us/pythonbrewinstall</a></p>
+<p>$ chmod +x pythonbrewinstall</p>
+<p>$ ./pythonbrewinstall</p>
+<p>系统层(多用户环境)安装</p>
+<p>在root用户环境下运行安装脚本，将自动将pythonbrew安装到 <code> /usr/local/pythonbrew</code> ，并为系统下的每个用户进行配置。</p>
+<p>安装完成后，非root用户在使用pythonbrew就不必调用sudo，而是直接运行 sudosudopybrew 即可:</p>
+<p>$ sudopybrew install -n -v -j2 2.7.2</p>
+<p>用法</p>
+<p>一般用法是:</p>
+<p>pythonbrew command [options]</p>
+<p>安装zlib-devel,解决setuptools安装失败的问题</p>
+<p>yum -y install zlib-devel</p>
+<p>安装不同版本的python:</p>
+<p>pythonbrew install 2.7.2</p>
+<p>pythonbrew install --verbose 2.7.2</p>
+<p>pythonbrew install --test 2.7.2</p>
+<p>pythonbrew install --test --force 2.7.2</p>
+<p>pythonbrew install --configure="CC=gcc_4.1" 2.7.2</p>
+<p>pythonbrew install --no-setuptools 2.7.2</p>
+<p>pythonbrew install <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=http%3A%2F%2Fwww.python.org%2Fftp%2Fpython%2F2.7%2FPython-2.7.2.tgz" target="_blank" data-url="http://www.python.org/ftp/python/2.7/Python-2.7.2.tgz">http://www.python.org/ftp/python/2.7/Python-2.7.2.tgz</a></p>
+<p>pythonbrew install /path/to/Python-2.7.2.tgz</p>
+<p>pythonbrew install /path/to/Python-2.7.2</p>
+<p>pythonbrew install 2.7.2 3.2</p>
+<p>永久性地使用某个特定版本的python(即每次登录shell都使用某个版本的python):</p>
+<p>pythonbrew switch 2.7.2</p>
+<p>pythonbrew switch 3.2</p>
+<p>临时性地切换使用某个特定版本的python(即在当前shell中使用某个版本的python):</p>
+<p>pythonbrew use 2.7.2</p>
+<p>可以使用系统内所有版本/某个指定版本的python运行某个python文件:</p>
+<p>pythonbrew py test.py</p>
+<p>pythonbrew py -v test.py # 显示详细的输出结果</p>
+<p>pythonbrew py -p 2.7.2 -p 3.2 test.py # 使用指定版本的python</p>
+<p>列出系统内所有已安装的各个版本的python:</p>
+<p>pythonbrew list</p>
+<p>列出pythonbrew可以安装哪些版本的python:</p>
+<p>pythonbrew list -k</p>
+<p>删除某个特定版本的python:</p>
+<p>pythonbrew uninstall 2.7.2</p>
+<p>pythonbrew uninstall 2.7.2 3.2</p>
+<p>清理陈旧的源码目录和档案包:</p>
+<p>pythonbrew cleanup</p>
+<p>升级到pythonbrew到最新版本:</p>
+<p>pythonbrew update</p>
+<p>pythonbrew update --master</p>
+<p>pythonbrew update --develop</p>
+<p>禁用pythonbrew(即切换回原始环境):</p>
+<p>pythonbrew off</p>
+<p>创建或移除指向某个python版本的符号链接(在您的$PATH中的某个目录):</p>
+<p>pythonbrew symlink # 为已安装的各个版本的python都创建一个符号链接，形如"py2.7.2"。</p>
+<p>pythonbrew symlink -p 2.7.2</p>
+<p>pythonbrew symlink pip #创建指向bin目录下某个指定脚本的符号链接。</p>
+<p>pythonbrew symlink -r # 移除符号链接。</p>
+<p>pythonbrew symlink -v foo # 创建指向bin目录下某个指定的隔离环境的符号链接。</p>
+<p>在当前或是某个特定版本的python中运行 buildout</p>
+<p>pythonbrew buildout</p>
+<p>pythonbrew buildout -p 2.6.6</p>
+<p>创建python隔离环境(借助virtualenv)</p>
+<p>pythonbrew venv init</p>
+<p>pythonbrew venv create proj</p>
+<p>pythonbrew venv list</p>
+<p>pythonbrew venv use proj</p>
+<p>pythonbrew venv delete proj</p>
+<p>pythonbrew venv rename proj proj2</p>
+<p>查看版本</p>
+<p>pythonbrew version</p>
+<p>命令</p>
+<p>· install</p>
+<p>· 构建并安装某个给定版本的python，并自动安装setuptools和pip。</p>
+<p>· switch</p>
+<p>· 永久切换到某个特定版本的python做为默认版本。</p>
+<p>· use</p>
+<p>· 在当前shell下使用某个特定版本的python。</p>
+<p>· py file&gt;</p>
+<p>· 使用所有版本/某个特定版本运行一个python文件。</p>
+<p>· list</p>
+<p>· 列出所有已安装的python版本。</p>
+<p>· list -k</p>
+<p>· 列出所有可安装的python版本。</p>
+<p>· uninstall</p>
+<p>· 删除某个特定版本的python。</p>
+<p>· cleanup</p>
+<p>· 移除陈旧的源码目录和档案包。</p>
+<p>· update</p>
+<p>· 升级pythonbrew到最新版本。</p>
+<p>· off</p>
+<p>· 禁用pythonbrew。</p>
+<p>· symlink</p>
+<p>· 创建或移除指向某个python版本的符号链接(在您的$PATH中的某个目录)。</p>
+<p>· buildout</p>
+<p>· 在当前或是某个特定版本的python中运行 buildout 。</p>
+<p>· venv</p>
+<p>· 创建python隔离环境(借助virtualenv)。</p>
+<p>· version</p>
+<p>· 查看版本。</p>
+<p>查看更多细节，可以运行:</p>
+<p>$ pythonbrew help</p>
+<p>相关文档和链接</p>
+<p>· Python 的虛擬環境及多版本開發利器─Virtualenv 與 Pythonbrew 。</p>
+<p>· Pythonbrew – 讓環境得以快速切換不同的Python版本 。</p>
+<p>授权</p>
+<p>MIT 开源协议</p>
+<p>Copyright (c) &lt;2010-2012&gt;</p>
+<p>任何人都可以免费权限该软件和相关文档的副本，在处理软件上不受任何限制，包括但不限于使用，复制，修改，合并，发布，分发，转授和出售本软件的副本， 以及再授权等等，但获得以上权利必须履行以下义务</p>
+<p>在软件和软件的所有副本中都必须包含版权声明和许可声明。<br>好啦，今天的分享到这里就结束了，如果想浏览更多的技术性文章，可以访问马哥教育官网，每天都会有大量优质内容与大家分享！</p>
+
+                                                            </div>
+                                

@@ -1,0 +1,5 @@
+利用Stub File标注Python文件类型<br /><br />
+                                                                        <p>在升级到<code>Python 3.5+</code>版本之后，最大的项目管理优化来自于<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.python.org%2Fdev%2Fpeps%2Fpep-0484%2F" target="_blank" data-url="https://www.python.org/dev/peps/pep-0484/"><code>PEP-484 Type Hint</code></a>的引入。借助<code>Type Hint</code>，我们可以进一步提升<code>Python</code>代码的类型标注，保障在重构过程中避免出现一些低级失误。</p><p>我们可以通过高版本<code>Python</code>新加的新语法启用这项特性，然后通过<code>mypy</code>等工具检查：</p><pre><code class="python">def greeting(name: str) -&gt; str:
+    return 'Hello ' + name</code></pre><p>然而，在实际实践过程中，也往往存在一些问题，这些问题来自于很多方面：<!--more--></p><ul><li>你难免有一些历史性代码，这些代码需要同时支持<code>Python2</code>和<code>Python3</code>。</li><li>你使用的<code>Python 3 Only</code>的第三方库没有<code>Type Hint</code>定义，作者看起来并不打算近期支持或者某些原因（比如你正在用的某个老版本不维护了）导致你不能贡献代码。</li></ul><p>这些时候你</p>
+                                                            </div>
+                                

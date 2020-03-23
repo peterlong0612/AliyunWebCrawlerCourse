@@ -1,0 +1,32 @@
+python学习笔记（1）：配置虚拟开发环境<br /><br />
+                                                                        
+<h3>问题</h3>
+<p>有的时候开发不同的业务，所需要的环境不一样。一直在同一个环境中开发时候，不同的包版本升级可能会导致另外的业务不能正常工作。另外，有的github上的项目需要的开发环境与你使用的环境不同，冒然的按照它的<code>requirements</code>安装相应的包会产生类似的问题。<br>一般而言，针对这种情况，对不同的业务，如果是存在依赖包存在版本升降级问题，常规的办法是对不同的业务创建不同的虚拟环境，在各个业务下，先进入虚拟环境，然后需要那种依赖包再进行安装，这样就不会产生版本不一样，或者版本升级导致的其它业务不能正常工作这一问题了。</p>
+<h3>解决办法</h3>
+<h3>Mac Os 系统</h3>
+<h4>安装 pip</h4>
+<p>Pip ， Python数据包的安装器, <a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fpip.pypa.io%2Fen%2Fstable%2Finstalling%2F" target="_blank" data-url="https://pip.pypa.io/en/stable/installing/">其官方文档介绍在此</a>.<br>一般而言，当安装好python3后，pip也随之安装。如果获得如下错误</p>
+<pre><code>pip command not found</code></pre>
+<p>使用下面的命令安装pip：</p>
+<pre><code class="shell">sudo easy_install pip</code></pre>
+<h4>安装 virtualenv</h4>
+<p>virtualenv 是一个创建隔离python项目的工具。类似于将各个项目的python及依赖包进行隔离。<br>输入下面命令进行安装</p>
+<pre><code class="shell">sudo pip install virtualenv</code></pre>
+<p>如果得到错误，输入下面命令进行安装</p>
+<pre><code class="shell">sudo -H pip install virtualenv</code></pre>
+<h5>创建 virtualenv 环境</h5>
+<p>导航至要存储你的代码路径下，创建新的目录</p>
+<pre><code class="shell">mkdir my_project &amp;&amp; cd my_project</code></pre>
+<p>进入到<code>my_project </code>文件夹下创建一个新的虚拟环境virtualenv</p>
+<pre><code class="shell">virtualenv env</code></pre>
+<p>创建完毕后，需要对环境进行激活virtualenv</p>
+<pre><code class="shell">source env/bin/activate</code></pre>
+<p>终端前面会出现这个，说明虚拟环境创建完毕，之后就能在该虚拟环境下随意操作，而不会对其它业务有所影响<br><img src="https://img-blog.csdnimg.cn/20191107140527831.png" alt="在这里插入图片描述" title="在这里插入图片描述"></p>
+<h2>链接</h2>
+<ul>
+<li><a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fprogramwithus.com%2Flearn-to-code%2FPip-and-virtualenv-on-Mac%2F" target="_blank" data-url="https://programwithus.com/learn-to-code/Pip-and-virtualenv-on-Mac/">https://programwithus.com/learn-to-code/Pip-and-virtualenv-on-Mac/</a></li>
+<li><a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fwww.jianshu.com%2Fp%2F8f3ef011d74b" target="_blank" data-url="https://www.jianshu.com/p/8f3ef011d74b">https://www.jianshu.com/p/8f3ef011d74b</a></li>
+</ul>
+
+                                                            </div>
+                                

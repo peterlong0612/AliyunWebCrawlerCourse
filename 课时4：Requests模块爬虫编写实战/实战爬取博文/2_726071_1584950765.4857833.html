@@ -1,0 +1,14 @@
+PHP与Python进行数据交互<br /><br />
+                                                                        
+<p>最近，决定在一个项目用tp5进行APP接口开发，用Python做数据分析，然后这就面临一个问题：PHP和Python如何进行数据交互？<br>思路</p>
+<p>我解决此问题的方法是利用了PHP的passthru函数来调用命令运行Python脚本。</p>
+<p>实现</p>
+<p>在PHP中调用命令运行Python脚本<br><img src="https://yqfile.alicdn.com/eba5eb3f745058ccc558c3f165c34ea861d77823.png" alt="__20191106143946" title="__20191106143946"><br>若存在多个参数，则参数之间以空格分开</p>
+<p>在Python中接收PHP传入的参数</p>
+<p>sys.argv[]用于获取到的PHP传入python的入口参数<br><img src="https://yqfile.alicdn.com/26eb3203a4afb6fe2e58d8a3f08b9452a21afd4c.png" alt="__20191106144028" title="__20191106144028"><br>若在Python中接收多个参数 <br><img src="https://yqfile.alicdn.com/59046ac5c6555b91e49f77a7617515220ef142b1.png" alt="__20191106144103" title="__20191106144103"><br>从Python中返回参数</p>
+<p>若要从Python中返回多个值，需要将值写入元组中，然后通过json.dumps()转化为json，并进行打印，PHP中通过passthru可以获得Python脚本打印的json<br><img src="https://yqfile.alicdn.com/40fdafb6cf922df222614473f433eb8c6bc382dc.png" alt="__20191106144141" title="__20191106144141"><br>另需要在PHP中passthru前加@，否则会报以下提示 <br><img src="https://yqfile.alicdn.com/9d14ac6406a14acfa156d2e4d0c206589f931862.png" alt="__20191106144222" title="__20191106144222"><br>效果</p>
+<p>运行调用Python脚本的PHP文件，浏览器中输出值为Python打印的值。</p>
+<p>更多PHP相关知识请加php交流群：<a href="https://yq.aliyun.com/go/articleRenderRedirect?url=https%3A%2F%2Fjq.qq.com%2F%3F_wv%3D1027%26amp%3Bk%3D5QGOcFn" target="_blank" data-url="https://jq.qq.com/?_wv=1027&amp;k=5QGOcFn">link</a></p>
+
+                                                            </div>
+                                
